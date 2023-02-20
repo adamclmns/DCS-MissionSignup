@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
@@ -21,8 +22,8 @@ public class DualStartTimesTable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
 
-    ZonedDateTime ingame;
-    ZonedDateTime outgame;
+    LocalDateTime ingame;
+    LocalDateTime outgame;
 
     @Override
     public boolean equals(Object o) {

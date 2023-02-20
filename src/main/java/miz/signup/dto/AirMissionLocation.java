@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 /**
  *              {
@@ -19,8 +19,8 @@ import java.time.ZonedDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AirMissionLocation {
     private Long _id;
-    private ZonedDateTime start_time;
-    private ZonedDateTime end_time;
+    private LocalDateTime start_time;
+    private LocalDateTime end_time;
     private String location_name;
     private Integer msn_altitude;
 }

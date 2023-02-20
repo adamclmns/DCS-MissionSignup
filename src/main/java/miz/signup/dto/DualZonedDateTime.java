@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 /**
  * { "ingame": "2022-12-07 19:04:27", "outgame": "2022-12-07 19:04:27" }
@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DualZonedDateTime {
     private Long _id;
-    ZonedDateTime ingame;
-    ZonedDateTime outgame;
+    LocalDateTime ingame;
+    LocalDateTime outgame;
 
 }

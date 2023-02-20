@@ -1,11 +1,10 @@
 package miz.signup.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
@@ -19,11 +18,12 @@ import java.util.Objects;
 public class AirMissionLocationTable {
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name="start_time")
-    private ZonedDateTime start_time;
+    private LocalDateTime start_time;
     @Column(name="end_time")
-    private ZonedDateTime end_time;
+    private LocalDateTime end_time;
     @Column(name="location_name")
     private String location_name;
     @Column(name="msn_altitude")

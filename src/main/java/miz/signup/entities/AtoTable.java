@@ -27,7 +27,7 @@ public class AtoTable {
     @Column(name="name")
     private String name;
     @Column(name="timezone")
-    private ZoneId timezone;
+    private String timezone;
     @OneToMany(cascade = {CascadeType.ALL})
     @ToString.Exclude
     private List<BriefingDocumentTable> documents;

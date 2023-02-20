@@ -12,22 +12,21 @@ public class EntityMapper {
         if (ato.get_id() != null) {
             builder.id(ato.get_id());
         }
-        builder.name(ato.getName())
-                .identifier(ato.getIdentifier());
+        builder.name(ato.getHeader().getName())
+                .identifier(ato.getHeader().getIdentifier());
         builder.time_to(
-                mapToEnd(ato.getTime_from())
+                mapToEnd(ato.getHeader().getTime_from())
         ).time_from(
-                maptoStart(ato.getTime_to())
+                maptoStart(ato.getHeader().getTime_to())
         );
         builder.documents(
-                        map(ato.getDocuments())
-                ).timezone(ato.getTimezone())
+                        map(ato.getHeader().getDocuments())
+                ).timezone(ato.getHeader().getTimezone())
                 .flightLines(
                         EntityMapper.mapFlightLines(ato.getLines())
                 );
         return builder.build();
     }
-
 
 
     public static FlightLineTable map(FlightLine line) {
@@ -38,9 +37,11 @@ public class EntityMapper {
                 .arinfo(map(line.getArinfo()))
                 .build();
     }
+
     public static List<FlightLineTable> mapFlightLines(List<FlightLine> lines) {
         return lines.stream().map(EntityMapper::map).collect(Collectors.toList());
     }
+
     public static AirRefuelInfoTable map(AirRefuelInfo refuelInfo) {
         return AirRefuelInfoTable.builder()
                 .id(refuelInfo.get_id())
@@ -87,12 +88,15 @@ public class EntityMapper {
     }
 
     public static AirMissionLocationTable map(AirMissionLocation location) {
-        return AirMissionLocationTable.builder()
-                .location_name(location.getLocation_name())
-                .end_time(location.getEnd_time())
-                .start_time(location.getStart_time())
-                .msn_altitude(location.getMsn_altitude())
-                .build();
+        if(location != null) {
+            return AirMissionLocationTable.builder()
+                    .location_name(location.getLocation_name())
+                    .end_time(location.getEnd_time())
+                    .start_time(location.getStart_time())
+                    .msn_altitude(location.getMsn_altitude())
+                    .build();
+        }
+        return null;
     }
 
     public static MissionDataTable map(MissionData missionData) {
@@ -106,30 +110,42 @@ public class EntityMapper {
     }
 
     public static List<BriefingDocumentTable> map(List<BriefingDocument> docs) {
-        return docs.stream().map(EntityMapper::map).collect(Collectors.toList());
+        if (docs != null && !docs.isEmpty()) {
+            return docs.stream().map(EntityMapper::map).collect(Collectors.toList());
+        }
+        return null;
     }
 
     public static BriefingDocumentTable map(BriefingDocument doc) {
-        BriefingDocumentTable.BriefingDocumentTableBuilder builder = BriefingDocumentTable.builder();
-        if (doc.get_id() != null) {
-            builder.id(doc.get_id());
+        if (doc != null) {
+            BriefingDocumentTable.BriefingDocumentTableBuilder builder = BriefingDocumentTable.builder();
+            if (doc.get_id() != null) {
+                builder.id(doc.get_id());
+            }
+            return builder.directory(doc.getDirectory()).name(doc.getName()).build();
         }
-        return builder.directory(doc.getDirectory()).name(doc.getName()).build();
+        return null;
     }
 
     public static DualStartTimesTable maptoStart(DualZonedDateTime start) {
-        DualStartTimesTable.DualStartTimesTableBuilder builder = DualStartTimesTable.builder();
-        if (start.get_id() != null) {
-            builder.id(start.get_id());
+        if (start != null) {
+            DualStartTimesTable.DualStartTimesTableBuilder builder = DualStartTimesTable.builder();
+            if (start.get_id() != null) {
+                builder.id(start.get_id());
+            }
+            return builder.ingame(start.getIngame()).outgame(start.getOutgame()).build();
         }
-        return builder.ingame(start.getIngame()).outgame(start.getOutgame()).build();
+        return null;
     }
 
     public static DualEndTimesTable mapToEnd(DualZonedDateTime end) {
-        DualEndTimesTable.DualEndTimesTableBuilder builder = DualEndTimesTable.builder();
-        if (end.get_id() != null) {
-            builder.id(end.get_id());
+        if (end != null) {
+            DualEndTimesTable.DualEndTimesTableBuilder builder = DualEndTimesTable.builder();
+            if (end.get_id() != null) {
+                builder.id(end.get_id());
+            }
+            return builder.ingame(end.getIngame()).outgame(end.getOutgame()).build();
         }
-        return builder.ingame(end.getIngame()).outgame(end.getOutgame()).build();
+        return null;
     }
 }

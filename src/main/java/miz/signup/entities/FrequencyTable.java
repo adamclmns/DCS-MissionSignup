@@ -17,7 +17,7 @@ public class FrequencyTable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
-    @Column(name = "name",unique = true)
+    @Column(name = "name")
     private String name;
     @Column(name = "freq")
     private Double freq;

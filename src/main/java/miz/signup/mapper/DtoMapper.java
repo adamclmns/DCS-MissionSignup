@@ -24,44 +24,67 @@ public class DtoMapper {
     }
 
     public static ATO map(AtoTable airTaskingOrder) {
-        return ATO.builder()
+        return ATO.builder().header(AtoHeader.builder()
+                        .identifier(airTaskingOrder.getIdentifier())
+                        .name(airTaskingOrder.getName())
+                        .time_from(map(airTaskingOrder.getTime_from()))
+                        .time_to(map(airTaskingOrder.getTime_to()))
+                        .documents(mapBriefing(airTaskingOrder.getDocuments()))
+                        .timezone(airTaskingOrder.getTimezone())
+                        .build())
                 ._id(airTaskingOrder.getId())
-                .identifier(airTaskingOrder.getIdentifier())
-                .name(airTaskingOrder.getName())
-                .time_from(map(airTaskingOrder.getTime_from()))
-                .time_to(map(airTaskingOrder.getTime_to()))
-                .documents(mapBriefing(airTaskingOrder.getDocuments()))
                 .lines(map(airTaskingOrder.getFlightLines()))
-                .timezone(airTaskingOrder.getTimezone())
                 .build();
     }
 
     public static List<BriefingDocument> mapBriefing(List<BriefingDocumentTable> briefingDocuments) {
-        return briefingDocuments.stream().map(DtoMapper::map).collect(Collectors.toList());
+        if(briefingDocuments != null && !briefingDocuments.isEmpty()) {
+            return briefingDocuments.stream().map(DtoMapper::map).collect(Collectors.toList());
+        }
+        return null;
     }
 
     public static BriefingDocument map(BriefingDocumentTable briefingDocument) {
-        return BriefingDocument.builder()
-                ._id(briefingDocument.getId())
-                .directory(briefingDocument.getDirectory())
-                .name(briefingDocument.getName())
-                .build();
+        if(briefingDocument != null ) {
+            BriefingDocument.BriefingDocumentBuilder builder = BriefingDocument.builder();
+            if(briefingDocument.getId() != null) {
+                builder._id(briefingDocument.getId());
+            }
+            return builder
+                    .directory(briefingDocument.getDirectory())
+                    .name(briefingDocument.getName())
+                    .build();
+        }
+        return null;
     }
 
     public static DualZonedDateTime map(DualEndTimesTable endTime) {
-        return DualZonedDateTime.builder()
-                ._id(endTime.getId())
-                .ingame(endTime.getIngame())
-                .outgame(endTime.getOutgame())
-                .build();
+        if(endTime != null) {
+            DualZonedDateTime.DualZonedDateTimeBuilder builder = DualZonedDateTime.builder();
+            if(endTime.getId()!= null) {
+                builder
+                    ._id(endTime.getId());
+            }
+            return builder.ingame(endTime.getIngame())
+                        .outgame(endTime.getOutgame())
+                        .build();
+
+        }
+        return null;
     }
 
     public static DualZonedDateTime map(DualStartTimesTable endTime) {
-        return DualZonedDateTime.builder()
-                ._id(endTime.getId())
-                .ingame(endTime.getIngame())
-                .outgame(endTime.getOutgame())
-                .build();
+        if(endTime != null) {
+            DualZonedDateTime.DualZonedDateTimeBuilder builder =  DualZonedDateTime.builder();
+            if(endTime.getId() != null){
+                builder._id(endTime.getId());
+            }
+            return builder
+                    .ingame(endTime.getIngame())
+                    .outgame(endTime.getOutgame())
+                    .build();
+        }
+        return null;
     }
 
     public static List<FlightLine> map(List<FlightLineTable> lines) {

@@ -28,7 +28,6 @@ public class AirRefuelInfoTable {
     private Integer tnkr_speed;
     @Column(name="offload")
     private Double offload;
-
     @ManyToOne(cascade = {CascadeType.ALL})
     private FrequencyTable frequency;
     @Column(name="ac_type")

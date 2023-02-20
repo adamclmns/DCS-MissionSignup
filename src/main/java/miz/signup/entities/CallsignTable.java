@@ -15,8 +15,8 @@ import java.util.List;
 public class CallsignTable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="id") Long id;
-
+    @Column(name="id")
+    Long id;
     @Column(name="prefix")
     String prefix;
     @Column(name="suffix_01")

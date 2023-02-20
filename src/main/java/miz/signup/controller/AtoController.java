@@ -4,12 +4,11 @@ import miz.signup.dto.ATO;
 import miz.signup.dto.EMissionType;
 import miz.signup.entities.*;
 import miz.signup.mapper.DtoMapper;
+import miz.signup.mapper.EntityMapper;
 import miz.signup.repos.AtoRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
@@ -29,14 +28,14 @@ public class AtoController {
                 .identifier("test001")
                 .time_from(
                         DualStartTimesTable.builder()
-                                .ingame(ZonedDateTime.now().plusDays(6L))
-                                .outgame(ZonedDateTime.now().plusDays(5L))
+                                .ingame(LocalDateTime.now().plusDays(6L))
+                                .outgame(LocalDateTime.now().plusDays(5L))
                                 .build()
                 )
                 .time_to(
                         DualEndTimesTable.builder()
-                                .ingame(ZonedDateTime.now().plusDays(6L).plusHours(3L))
-                                .outgame(ZonedDateTime.now().plusDays(5L).plusHours(3L))
+                                .ingame(LocalDateTime.now().plusDays(6L).plusHours(3L))
+                                .outgame(LocalDateTime.now().plusDays(5L).plusHours(3L))
                                 .build()
                 )
                 .documents(Arrays.asList(
@@ -52,11 +51,9 @@ public class AtoController {
                                 .msndat(
                                         MissionDataTable.builder().mission_num(1).num_ac(4).prim_msn(EMissionType.DEAD).build()
                                 )
-
                                         .build())
-
                 )
-                .timezone(ZoneId.of("UTC"))
+                .timezone("Central")
                 .build();
     }
     public AtoController(AtoRepository atoRepository) {
@@ -66,6 +63,10 @@ public class AtoController {
 
     }
 
+    @PostMapping
+    public ATO post(@RequestBody ATO ato){
+        return DtoMapper.map(atoRepository.save(EntityMapper.map(ato)));
+    }
 
     @GetMapping
     public Collection<ATO> getAll(){

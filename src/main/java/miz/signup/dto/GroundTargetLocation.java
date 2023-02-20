@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 /**
  * {
@@ -23,9 +23,9 @@ import java.time.ZonedDateTime;
 public class GroundTargetLocation {
     private Long _id;
     Integer target_id;
-    ZonedDateTime net;
-    ZonedDateTime nlt;
-    ZonedDateTime tot;
+    LocalDateTime net;
+    LocalDateTime nlt;
+    LocalDateTime tot;
     String priority;
     String description;
     Coordinate dmpi;
