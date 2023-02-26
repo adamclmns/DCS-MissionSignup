@@ -31,29 +31,12 @@ public class AtoController {
 
     final AtoRepository atoRepository;
     final ObjectMapper objectMapper;
-    private final BriefingDocumentRepository briefingDocumentRepository;
 
-    @PostConstruct
-    private void buildATOFromNothing() {
-        log.info("Creating First record");
-        try {
-            String initialJson = new String(getClass().getClassLoader().getResourceAsStream("test_ATO_1.json").readAllBytes());
-            ATO atoObject = objectMapper.readValue(initialJson, ATO.class);
-            AtoTable atoEntity = EntityMapper.map(atoObject);
 
-            atoRepository.save(atoEntity);
 
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
-    }
-
-    public AtoController(AtoRepository atoRepository, BriefingDocumentRepository briefingDocumentRepository,ObjectMapper om) {
+    public AtoController(AtoRepository atoRepository,ObjectMapper om) {
         this.atoRepository = atoRepository;
-        this.briefingDocumentRepository = briefingDocumentRepository;
         this.objectMapper = om;
 
 

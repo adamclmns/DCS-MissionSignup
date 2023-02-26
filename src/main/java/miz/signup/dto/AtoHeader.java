@@ -14,11 +14,10 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AtoHeader {
-
-    private String id;
     private String name;
     private String timezone;
     private DualZonedDateTime time_from;
     private DualZonedDateTime time_to;
     private List<BriefingDocument> documents;
+    private String id;
 }

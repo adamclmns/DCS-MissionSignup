@@ -2,17 +2,23 @@ package miz.signup;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import miz.signup.dto.ATO;
+import miz.signup.mapper.DtoMapper;
+import miz.signup.mapper.EntityMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springdoc.core.providers.ObjectMapperProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
 
+
+@SpringBootTest(classes = MissionSignupApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ATOParsingTest {
 
-    private final ObjectMapper om = new ObjectMapper();
+    @Autowired
+    private ObjectMapper om;
 
     @Test
     public void testParsing_HappyPath() throws IOException {
