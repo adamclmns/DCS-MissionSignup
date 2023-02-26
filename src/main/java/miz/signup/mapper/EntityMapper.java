@@ -31,16 +31,49 @@ public class EntityMapper {
     }
 
 
-    public static FlightLineTable map(FlightLine line) {
+    public static FlightLineTable map(FlightLine dto) {
         return FlightLineTable.builder()
-                .id(line.get_id())
-                .msndat(map(line.getMsndat()))
-                .amsnloc(map(line.getAmsnloc()))
-                .arinfo(map(line.getArinfo()))
-                .gtgtloc(mapGroundTargetLocations(line.getGtgtloc()))
-                .pkgcmd(map(line.getPkgcmd()))
-                .pkgdat(mapPackageData(line.getPkgdat()))
+                .id(dto.get_id())
+                .msndat(map(dto.getMsndat()))
+                .amsnloc(map(dto.getAmsnloc()))
+                .arinfo(map(dto.getArinfo()))
+                .gtgtloc(mapGroundTargetLocations(dto.getGtgtloc()))
+                .pkgcmd(map(dto.getPkgcmd()))
+                .pkgdat(mapPackageData(dto.getPkgdat()))
+                .signups(mapSignups(dto.getSignups()))
                 .build();
+    }
+
+    private static List<SignUpTable> mapSignups(List<Signup> dtos) {
+        if(dtos != null && !dtos.isEmpty()){
+            return dtos.stream().map(EntityMapper::map).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    private static SignUpTable map(Signup dto) {
+        if(dto != null ){
+            SignUpTable.SignUpTableBuilder builder = SignUpTable.builder();
+            if(dto.get_id() != null){
+                builder.id(dto.get_id());
+            }
+            builder.type(dto.getType());
+
+            if(dto.getUsers().size() >= 1){
+                builder.user01(dto.getUsers().get(0));
+            }
+            if(dto.getUsers().size() >= 2){
+                builder.user02(dto.getUsers().get(1));
+            }
+            if(dto.getUsers().size() >= 3){
+                builder.user03(dto.getUsers().get(2));
+            }
+            if(dto.getUsers().size() == 4){
+                builder.user04(dto.getUsers().get(3));
+            }
+            return builder.build();
+        }
+        return null;
     }
 
     private static List<PackageDataTable> mapPackageData(List<PackageData> dtos) {
@@ -61,6 +94,7 @@ public class EntityMapper {
                     .mission_num(dto.getMission_num())
                     .ac_cs(map(dto.getAc_cs()))
                     .pkg_id(dto.getPkg_id())
+                    .num_ac(dto.getNum_ac())
                     .build();
         }
         return null;
@@ -144,16 +178,19 @@ public class EntityMapper {
         if (callsign.getSuffix() != null) {
             if (callsign.getSuffix().size() >= 1) {
                 builder.suffix01(callsign.getSuffix().get(0));
+            }else{
+                builder.suffix01(null);
             }
             if (callsign.getSuffix().size() >= 2) {
-                builder.suffix01(callsign.getSuffix().get(1));
+                builder.suffix02(callsign.getSuffix().get(1));
             }
+            else builder.suffix02(null);
             if (callsign.getSuffix().size() >= 3) {
-                builder.suffix01(callsign.getSuffix().get(2));
-            }
-            if (callsign.getSuffix().size() >= 4) {
-                builder.suffix01(callsign.getSuffix().get(3));
-            }
+                builder.suffix03(callsign.getSuffix().get(2));
+            }else builder.suffix03(null);
+            if (callsign.getSuffix().size() == 4) {
+                builder.suffix04(callsign.getSuffix().get(3));
+            }else builder.suffix04(null);
         }
         return builder.build();
 
@@ -179,18 +216,19 @@ public class EntityMapper {
         return null;
     }
 
-    public static MissionDataTable map(MissionData missionData) {
-        return MissionDataTable.builder()
-                .prim_msn(missionData.getPrim_msn())
-                .num_ac(missionData.getNum_ac())
-                .mission_num(missionData.getMission_num())
-                .dep_location(map(missionData.getDep_location()))
-                .rec_location(map(missionData.getRec_location()))
-                .ac_type(missionData.getAc_type())
-                .sec_msn(missionData.getSec_msn())
-                .ac_cs(map(missionData.getAc_cs()))
-                .taskedUnit(missionData.getTasked_unit())
-                .build();
+    public static MissionDataTable map(MissionData dto) {
+        MissionDataTable.MissionDataTableBuilder builder = MissionDataTable.builder()
+                .prim_msn(dto.getPrim_msn())
+                .num_ac(dto.getNum_ac())
+                .mission_num(dto.getMission_num())
+                .dep_location(map(dto.getDep_location()))
+                .rec_location(map(dto.getRec_location()))
+                .ac_type(dto.getAc_type())
+                .sec_msn(dto.getSec_msn())
+                .ac_cs(map(dto.getAc_cs()))
+                .taskedUnit(dto.getTasked_unit());
+                builder.mode_3(dto.getMode_3().stream().map(i -> String.valueOf(i)).collect(Collectors.joining(",")));
+                    return builder.build();
     }
 
     public static BaseLocationTable map(BaseLocation table) {

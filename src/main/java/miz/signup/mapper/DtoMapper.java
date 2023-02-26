@@ -1,6 +1,5 @@
 package miz.signup.mapper;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.extern.slf4j.Slf4j;
 import miz.signup.dto.*;
 import miz.signup.entities.*;
@@ -105,7 +104,28 @@ public class DtoMapper {
                 .pkgcmd(map(lines.getPkgcmd()))
                 .pkgdat(mapPackageDatas(lines.getPkgdat()))
                 .msndat(map(lines.getMsndat()))
+                .signups(mapSignups(lines.getSignups()))
                 .build();
+    }
+
+    private static List<Signup> mapSignups(List<SignUpTable> entities) {
+        if(entities != null && !entities.isEmpty()){
+            return entities.stream().map(DtoMapper::map).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    private static Signup map(SignUpTable entity) {
+        if(entity != null){
+            Signup.SignupBuilder builder = Signup.builder();
+            if(entity.getId() != null){
+                builder._id(entity.getId());
+            }
+            return builder.type(entity.getType())
+                    .users(Arrays.asList(entity.getUser01(),entity.getUser02(),entity.getUser03(),entity.getUser04()))
+                    .build();
+        }
+        return null;
     }
 
     private static List<PackageData> mapPackageDatas(List<PackageDataTable> entities) {
@@ -126,6 +146,8 @@ public class DtoMapper {
                     .mission_num(entity.getMission_num())
                     .prim_msn(entity.getPrim_msn())
                     .ac_type(entity.getAc_type())
+                    .num_ac(entity.getNum_ac())
+                    .pkg_id(entity.getPkg_id())
                     .tasked_unit(entity.getTasked_unit())
                     .build();
         }
@@ -192,20 +214,20 @@ public class DtoMapper {
                 .build();
     }
 
-    public static MissionData map(MissionDataTable table) {
+    public static MissionData map(MissionDataTable entity) {
         MissionData.MissionDataBuilder builder = MissionData.builder();
-        if (table.getId() != null)
-            builder._id(table.getId());
-        builder.dep_location(map(table.getDep_location()))
-                .rec_location(map(table.getRec_location()))
-                .ac_cs(map(table.getAc_cs()))
-                .ac_type(table.getAc_type())
-                .prim_msn(table.getPrim_msn())
-                .sec_msn(table.getSec_msn())
-                .num_ac(table.getNum_ac())
-                .tasked_unit(table.getTaskedUnit())
-                .mission_num(table.getMission_num())
-        ;
+        if (entity.getId() != null)
+            builder._id(entity.getId());
+        builder.dep_location(map(entity.getDep_location()))
+                .rec_location(map(entity.getRec_location()))
+                .ac_cs(map(entity.getAc_cs()))
+                .ac_type(entity.getAc_type())
+                .prim_msn(entity.getPrim_msn())
+                .sec_msn(entity.getSec_msn())
+                .num_ac(entity.getNum_ac())
+                .tasked_unit(entity.getTaskedUnit())
+                .mission_num(entity.getMission_num());
+        builder.mode_3(Arrays.stream(entity.getMode_3().split(",")).map(str -> Integer.valueOf(str)).collect(Collectors.toList()));
 
         return builder.build();
     }
@@ -235,15 +257,16 @@ public class DtoMapper {
                 .tnkr_alt(airRefuelInfoTable.getTnkr_alt())
                 .tnkr_cp(airRefuelInfoTable.getTnkr_cp())
                 .tnkr_cs(map(airRefuelInfoTable.getTnkr_cs()))
+                .tnkr_speed(airRefuelInfoTable.getTnkr_speed())
                 .build();
     }
 
-    public static Callsign map(CallsignTable callsignTable) {
-        if (callsignTable != null)
+    public static Callsign map(CallsignTable entity) {
+        if (entity != null)
             return Callsign.builder()
-                    ._id(callsignTable.getId())
-                    .prefix(callsignTable.getPrefix())
-                    .suffix(Arrays.asList(callsignTable.getSuffix01(), callsignTable.getSuffix02(), callsignTable.getSuffix03(), callsignTable.getSuffix04()))
+                    ._id(entity.getId())
+                    .prefix(entity.getPrefix())
+                    .suffix(Arrays.asList(entity.getSuffix01(), entity.getSuffix02(), entity.getSuffix03(), entity.getSuffix04()).stream().filter(v -> v != null).collect(Collectors.toList()))
                     .build();
         else return null;
     }

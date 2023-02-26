@@ -25,6 +25,7 @@ public class PackageDataTable {
     private Integer mission_num;
     private EMissionType prim_msn;
     private String ac_type;
+    private Integer num_ac;
     @OneToOne(cascade = {CascadeType.ALL})
     private CallsignTable ac_cs;
 

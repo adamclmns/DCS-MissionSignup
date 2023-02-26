@@ -7,14 +7,13 @@ import miz.signup.entities.AtoTable;
 import miz.signup.mapper.DtoMapper;
 import miz.signup.mapper.EntityMapper;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
-@Disabled("This test is not yet passing, more fields left to map before this will work.")
+
 @SpringBootTest
 public class ATOTableMappingTest {
 
