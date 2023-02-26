@@ -1,7 +1,6 @@
 package miz.signup;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import miz.signup.dto.ATO;
 import miz.signup.entities.AtoTable;
