@@ -1,25 +1,27 @@
 package miz.signup.mapper;
 
+import lombok.extern.slf4j.Slf4j;
 import miz.signup.dto.*;
 import miz.signup.entities.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Slf4j
 public class EntityMapper {
     public static AtoTable map(ATO ato) {
         AtoTable.AtoTableBuilder builder = AtoTable.builder();
         if (ato.get_id() != null) {
             builder.id(ato.get_id());
         }
-        builder.name(ato.getHeader().getName())
-                .identifier(ato.getHeader().getIdentifier());
-        builder.time_to(
-                mapToEnd(ato.getHeader().getTime_from())
-        ).time_from(
-                maptoStart(ato.getHeader().getTime_to())
-        );
-        builder.documents(
+        builder
+                .name(ato.getHeader().getName())
+                .identifier(ato.getHeader().getIdentifier())
+                .time_to(
+                        mapToEnd(ato.getHeader().getTime_from())
+                ).time_from(
+                        maptoStart(ato.getHeader().getTime_to())
+                )
+                .documents(
                         map(ato.getHeader().getDocuments())
                 ).timezone(ato.getHeader().getTimezone())
                 .flightLines(
@@ -36,19 +38,44 @@ public class EntityMapper {
                 .amsnloc(map(line.getAmsnloc()))
                 .arinfo(map(line.getArinfo()))
                 .gtgtloc(mapGroundTargetLocations(line.getGtgtloc()))
+                .pkgcmd(map(line.getPkgcmd()))
+                .pkgdat(mapPackageData(line.getPkgdat()))
                 .build();
     }
 
+    private static List<PackageDataTable> mapPackageData(List<PackageData> dtos) {
+            if(dtos != null && !dtos.isEmpty()){
+                return dtos.stream().map(EntityMapper::map).collect(Collectors.toList());
+            }
+        return null;
+    }
+    private static PackageDataTable map(PackageData dto){
+        if(dto != null){
+            PackageDataTable.PackageDataTableBuilder builder = PackageDataTable.builder();
+            if(dto.get_id() != null){
+                builder.id(dto.get_id());
+            }
+            return builder.tasked_unit(dto.getTasked_unit())
+                    .prim_msn(dto.getPrim_msn())
+                    .ac_type(dto.getAc_type())
+                    .mission_num(dto.getMission_num())
+                    .ac_cs(map(dto.getAc_cs()))
+                    .pkg_id(dto.getPkg_id())
+                    .build();
+        }
+        return null;
+    }
     private static List<GroundTargetLocationTable> mapGroundTargetLocations(List<GroundTargetLocation> gtgtloc) {
-        if(gtgtloc != null && !gtgtloc.isEmpty()) {
+        if (gtgtloc != null && !gtgtloc.isEmpty()) {
             return gtgtloc.stream().map(EntityMapper::map).collect(Collectors.toList());
         }
-            return null;
+        return null;
 
     }
 
     private static GroundTargetLocationTable map(GroundTargetLocation groundTargetLocation) {
-        if(groundTargetLocation != null) {
+        if (groundTargetLocation != null) {
+            log.info("Converting GroundTargetLocation Dto to Entity");
             GroundTargetLocationTable.GroundTargetLocationTableBuilder builder = GroundTargetLocationTable.builder();
             if (groundTargetLocation.get_id() != null) {
                 builder.id(groundTargetLocation.get_id());
@@ -57,16 +84,42 @@ public class EntityMapper {
                     .nlt(groundTargetLocation.getNlt())
                     .target_id(groundTargetLocation.getTarget_id())
                     .net(groundTargetLocation.getNet())
+                    .dmpi(map(groundTargetLocation.getDmpi()))
                     .priority(groundTargetLocation.getPriority())
                     .description(groundTargetLocation.getDescription())
                     .build();
-        }else{
-            return null;
         }
+            return null;
+
+    }
+
+    private static CoordinateTable map(Coordinate dto) {
+        if(dto != null){
+            CoordinateTable.CoordinateTableBuilder builder = CoordinateTable.builder();
+            if(dto.get_id() != null)
+                builder.id(dto.get_id());
+            return builder.elevation(dto.getElevation()).lat(dto.getLat()).lon(dto.getLon()).build();
+        }
+        return null;
     }
 
     public static List<FlightLineTable> mapFlightLines(List<FlightLine> lines) {
         return lines.stream().map(EntityMapper::map).collect(Collectors.toList());
+    }
+
+    public static PackageCommandTable map(PackageCommand dto) {
+        if(dto != null) {
+            PackageCommandTable.PackageCommandTableBuilder builder = PackageCommandTable.builder();
+            if (dto.get_id() != null) {
+                builder.id(dto.get_id());
+            }
+            return builder.pkg_cmdr_cs(map(dto.getPkg_cmdr_cs()))
+                    .pkg_cmdr_unit_id(dto.getPkg_cmdr_unit_id())
+                    .pkg_id(dto.getPkg_id())
+                    .pkg_cmdr_mission_num(dto.getPkg_cmdr_mission_num())
+                    .build();
+        }
+        return null;
     }
 
     public static AirRefuelInfoTable map(AirRefuelInfo refuelInfo) {
@@ -115,7 +168,7 @@ public class EntityMapper {
     }
 
     public static AirMissionLocationTable map(AirMissionLocation location) {
-        if(location != null) {
+        if (location != null) {
             return AirMissionLocationTable.builder()
                     .location_name(location.getLocation_name())
                     .end_time(location.getEnd_time())
@@ -139,9 +192,10 @@ public class EntityMapper {
                 .taskedUnit(missionData.getTasked_unit())
                 .build();
     }
-    public static BaseLocationTable map(BaseLocation table){
+
+    public static BaseLocationTable map(BaseLocation table) {
         BaseLocationTable.BaseLocationTableBuilder builder = BaseLocationTable.builder();
-        if(table.get_id() != null)
+        if (table.get_id() != null)
             builder.id(table.get_id());
         builder.icao(table.getIcao()).name(table.getName());
         return builder.build();

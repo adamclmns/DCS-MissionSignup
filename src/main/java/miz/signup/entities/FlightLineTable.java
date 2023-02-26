@@ -24,9 +24,9 @@ public class FlightLineTable {
     @OneToOne(cascade = {CascadeType.ALL})
     private AirMissionLocationTable amsnloc;
     @OneToMany(cascade = {CascadeType.ALL})
-    private List<GroundTargetLocationTable> gtgtloc = new java.util.ArrayList<>();
+    private List<GroundTargetLocationTable> gtgtloc;
     @OneToMany(cascade = {CascadeType.ALL})
-    private List<PackageDataTable> pkgdat = new java.util.ArrayList<>();
+    private List<PackageDataTable> pkgdat;
     @ManyToOne(cascade = {CascadeType.ALL})
     private PackageCommandTable pkgcmd;
     @ManyToOne(cascade = {CascadeType.ALL})

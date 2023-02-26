@@ -1,6 +1,7 @@
 package miz.signup.mapper;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
+import lombok.extern.slf4j.Slf4j;
 import miz.signup.dto.*;
 import miz.signup.entities.*;
 
@@ -9,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@Slf4j
 public class DtoMapper {
     public static Optional<ATO> map(Optional<AtoTable> airTaskingOrdersOptional) {
         if (airTaskingOrdersOptional.isPresent()) {
@@ -39,16 +40,16 @@ public class DtoMapper {
     }
 
     public static List<BriefingDocument> mapBriefing(List<BriefingDocumentTable> briefingDocuments) {
-        if(briefingDocuments != null && !briefingDocuments.isEmpty()) {
+        if (briefingDocuments != null && !briefingDocuments.isEmpty()) {
             return briefingDocuments.stream().map(DtoMapper::map).collect(Collectors.toList());
         }
         return null;
     }
 
     public static BriefingDocument map(BriefingDocumentTable briefingDocument) {
-        if(briefingDocument != null ) {
+        if (briefingDocument != null) {
             BriefingDocument.BriefingDocumentBuilder builder = BriefingDocument.builder();
-            if(briefingDocument.getId() != null) {
+            if (briefingDocument.getId() != null) {
                 builder._id(briefingDocument.getId());
             }
             return builder
@@ -60,24 +61,24 @@ public class DtoMapper {
     }
 
     public static DualZonedDateTime map(DualEndTimesTable endTime) {
-        if(endTime != null) {
+        if (endTime != null) {
             DualZonedDateTime.DualZonedDateTimeBuilder builder = DualZonedDateTime.builder();
-            if(endTime.getId()!= null) {
+            if (endTime.getId() != null) {
                 builder
-                    ._id(endTime.getId());
+                        ._id(endTime.getId());
             }
             return builder.ingame(endTime.getIngame())
-                        .outgame(endTime.getOutgame())
-                        .build();
+                    .outgame(endTime.getOutgame())
+                    .build();
 
         }
         return null;
     }
 
     public static DualZonedDateTime map(DualStartTimesTable endTime) {
-        if(endTime != null) {
-            DualZonedDateTime.DualZonedDateTimeBuilder builder =  DualZonedDateTime.builder();
-            if(endTime.getId() != null){
+        if (endTime != null) {
+            DualZonedDateTime.DualZonedDateTimeBuilder builder = DualZonedDateTime.builder();
+            if (endTime.getId() != null) {
                 builder._id(endTime.getId());
             }
             return builder
@@ -89,7 +90,10 @@ public class DtoMapper {
     }
 
     public static List<FlightLine> mapFlightLines(List<FlightLineTable> lines) {
-        return lines.stream().map(DtoMapper::map).collect(Collectors.toList());
+        if (lines != null && !lines.isEmpty()) {
+            return lines.stream().map(DtoMapper::map).collect(Collectors.toList());
+        }
+        return null;
     }
 
     public static FlightLine map(FlightLineTable lines) {
@@ -98,53 +102,99 @@ public class DtoMapper {
                 .amsnloc(map(lines.getAmsnloc()))
                 .gtgtloc(map(lines.getGtgtloc()))
                 .arinfo(map(lines.getArinfo()))
+                .pkgcmd(map(lines.getPkgcmd()))
+                .pkgdat(mapPackageDatas(lines.getPkgdat()))
                 .msndat(map(lines.getMsndat()))
                 .build();
     }
 
+    private static List<PackageData> mapPackageDatas(List<PackageDataTable> entities) {
+        if(entities != null && !entities.isEmpty()){
+            return entities.stream().map(DtoMapper::map).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    private static PackageData map(PackageDataTable entity) {
+        if(entity != null){
+
+            PackageData.PackageDataBuilder builder = PackageData.builder();
+            if(entity.getId() != null){
+                builder._id(entity.getId());
+            }
+            return builder.ac_cs(map(entity.getAc_cs()))
+                    .mission_num(entity.getMission_num())
+                    .prim_msn(entity.getPrim_msn())
+                    .ac_type(entity.getAc_type())
+                    .tasked_unit(entity.getTasked_unit())
+                    .build();
+        }
+        return null;
+    }
+
+    private static PackageCommand map(PackageCommandTable entity) {
+        if(entity != null){
+            PackageCommand.PackageCommandBuilder builder = PackageCommand.builder();
+            if(entity.getId() != null){
+                builder._id(entity.getId());
+            }
+            return builder.pkg_cmdr_cs(map(entity.getPkg_cmdr_cs()))
+                    .pkg_cmdr_mission_num(entity.getPkg_cmdr_mission_num())
+                    .pkg_cmdr_unit_id(entity.getPkg_cmdr_unit_id())
+                    .pkg_id(entity.getPkg_id()).build();
+        }
+        return null;
+    }
+
     private static List<GroundTargetLocation> map(List<GroundTargetLocationTable> gtgtloc) {
-        if(gtgtloc != null && !gtgtloc.isEmpty()){
-            gtgtloc.stream().map(DtoMapper::map).collect(Collectors.toList());
+        if (gtgtloc != null && !gtgtloc.isEmpty()) {
+            return gtgtloc.stream().map(DtoMapper::map).collect(Collectors.toList());
         }
         return null;
 
     }
-    public static GroundTargetLocation map(GroundTargetLocationTable table) {
+
+    public static GroundTargetLocation map(GroundTargetLocationTable entity) {
         GroundTargetLocation.GroundTargetLocationBuilder builder = GroundTargetLocation.builder();
-        if(table.getId() != null)
-            builder._id(table.getId());
-        builder.description(table.getDescription())
-                .priority(table.getPriority())
-                .target_id(table.getTarget_id())
-                .nlt(table.getNlt())
-                .dmpi(map(table.getDmpi()))
-                .net(table.getNet())
-                .tot(table.getTot());
+        if (entity.getId() != null) {
+            builder._id(entity.getId());
+        }
+        builder.description(entity.getDescription())
+                .priority(entity.getPriority())
+                .target_id(entity.getTarget_id())
+                .nlt(entity.getNlt())
+                .dmpi(map(entity.getDmpi()))
+                .net(entity.getNet())
+                .tot(entity.getTot());
 
         return builder.build();
     }
 
-    private static Coordinate map(CoordinateTable dmpi) {
-        if(dmpi != null) {
+    private static Coordinate map(CoordinateTable entity) {
+        if (entity != null) {
             Coordinate.CoordinateBuilder builder = Coordinate.builder();
-            if (dmpi.getId() != null) {
-                builder._id(dmpi.getId());
+            if (entity.getId() != null) {
+                builder._id(entity.getId());
             }
-            return builder.elevation(dmpi.getElevation()).lat(dmpi.getLat()).lon(dmpi.getLon()).build();
+            return builder.elevation(entity.getElevation())
+                    .lat(entity.getLat())
+                    .lon(entity.getLon())
+                    .build();
         }
         return null;
     }
 
-    public static Frequency map(FrequencyTable frequencyTable) {
+    public static Frequency map(FrequencyTable entity) {
         return Frequency.builder()
-                ._id(frequencyTable.getId())
-                .freq(frequencyTable.getFreq())
-                .name(frequencyTable.getName())
+                ._id(entity.getId())
+                .freq(entity.getFreq())
+                .name(entity.getName())
                 .build();
     }
-    public static MissionData map(MissionDataTable table){
-        MissionData.MissionDataBuilder builder =  MissionData.builder();
-        if(table.getId() != null)
+
+    public static MissionData map(MissionDataTable table) {
+        MissionData.MissionDataBuilder builder = MissionData.builder();
+        if (table.getId() != null)
             builder._id(table.getId());
         builder.dep_location(map(table.getDep_location()))
                 .rec_location(map(table.getRec_location()))
@@ -155,13 +205,13 @@ public class DtoMapper {
                 .num_ac(table.getNum_ac())
                 .tasked_unit(table.getTaskedUnit())
                 .mission_num(table.getMission_num())
-                ;
+        ;
 
-            return builder.build();
+        return builder.build();
     }
 
-    public static BaseLocation map(BaseLocationTable table){
-        if(table != null) {
+    public static BaseLocation map(BaseLocationTable table) {
+        if (table != null) {
             BaseLocation.BaseLocationBuilder builder = BaseLocation.builder();
             if (table.getId() != null) {
                 builder._id(table.getId());
@@ -169,10 +219,11 @@ public class DtoMapper {
             builder.name(table.getName()).icao(table.getIcao());
 
             return builder.build();
-        }else{
+        } else {
             return null;
         }
     }
+
     public static AirRefuelInfo map(AirRefuelInfoTable airRefuelInfoTable) {
         return AirRefuelInfo.builder()
                 ._id(airRefuelInfoTable.getId())
@@ -188,12 +239,12 @@ public class DtoMapper {
     }
 
     public static Callsign map(CallsignTable callsignTable) {
-        if(callsignTable != null)
-        return Callsign.builder()
-                ._id(callsignTable.getId())
-                .prefix(callsignTable.getPrefix())
-                .suffix(Arrays.asList(callsignTable.getSuffix01(), callsignTable.getSuffix02(), callsignTable.getSuffix03(), callsignTable.getSuffix04()))
-                .build();
+        if (callsignTable != null)
+            return Callsign.builder()
+                    ._id(callsignTable.getId())
+                    .prefix(callsignTable.getPrefix())
+                    .suffix(Arrays.asList(callsignTable.getSuffix01(), callsignTable.getSuffix02(), callsignTable.getSuffix03(), callsignTable.getSuffix04()))
+                    .build();
         else return null;
     }
 
