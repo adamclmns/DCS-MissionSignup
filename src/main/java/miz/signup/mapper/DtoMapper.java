@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Slf4j
 public class DtoMapper {
     public static Optional<ATO> map(Optional<AtoTable> airTaskingOrdersOptional) {
@@ -109,37 +110,37 @@ public class DtoMapper {
     }
 
     private static List<Signup> mapSignups(List<SignUpTable> entities) {
-        if(entities != null && !entities.isEmpty()){
+        if (entities != null && !entities.isEmpty()) {
             return entities.stream().map(DtoMapper::map).collect(Collectors.toList());
         }
         return null;
     }
 
     private static Signup map(SignUpTable entity) {
-        if(entity != null){
+        if (entity != null) {
             Signup.SignupBuilder builder = Signup.builder();
-            if(entity.getId() != null){
+            if (entity.getId() != null) {
                 builder._id(entity.getId());
             }
             return builder.type(entity.getType())
-                    .users(Arrays.asList(entity.getUser01(),entity.getUser02(),entity.getUser03(),entity.getUser04()))
+                    .users(Arrays.asList(entity.getUser01(), entity.getUser02(), entity.getUser03(), entity.getUser04()))
                     .build();
         }
         return null;
     }
 
     private static List<PackageData> mapPackageDatas(List<PackageDataTable> entities) {
-        if(entities != null && !entities.isEmpty()){
+        if (entities != null && !entities.isEmpty()) {
             return entities.stream().map(DtoMapper::map).collect(Collectors.toList());
         }
         return null;
     }
 
     private static PackageData map(PackageDataTable entity) {
-        if(entity != null){
+        if (entity != null) {
 
             PackageData.PackageDataBuilder builder = PackageData.builder();
-            if(entity.getId() != null){
+            if (entity.getId() != null) {
                 builder._id(entity.getId());
             }
             return builder.ac_cs(map(entity.getAc_cs()))
@@ -155,9 +156,9 @@ public class DtoMapper {
     }
 
     private static PackageCommand map(PackageCommandTable entity) {
-        if(entity != null){
+        if (entity != null) {
             PackageCommand.PackageCommandBuilder builder = PackageCommand.builder();
-            if(entity.getId() != null){
+            if (entity.getId() != null) {
                 builder._id(entity.getId());
             }
             return builder.pkg_cmdr_cs(map(entity.getPkg_cmdr_cs()))
@@ -227,7 +228,8 @@ public class DtoMapper {
                 .num_ac(entity.getNum_ac())
                 .tasked_unit(entity.getTaskedUnit())
                 .mission_num(entity.getMission_num());
-        builder.mode_3(Arrays.stream(entity.getMode_3().split(",")).map(str -> Integer.valueOf(str)).collect(Collectors.toList()));
+        if (entity.getMode_3() != null)
+            builder.mode_3(Arrays.stream(entity.getMode_3().split(",")).map(str -> Integer.valueOf(str)).collect(Collectors.toList()));
 
         return builder.build();
     }

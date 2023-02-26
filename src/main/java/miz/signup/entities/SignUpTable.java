@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Table(name="flight_lines")
+@Table(name="signupTable")
 public class SignUpTable {
     @Id
     @Column(name="id")
@@ -20,7 +20,6 @@ public class SignUpTable {
     Long id;
     private String type;
     @Column(name="user01")
-    // TODO: Maybe a Map here? JSON List order is not guaranteed.
     private String user01;
     @Column(name="user02")
     private String user02;

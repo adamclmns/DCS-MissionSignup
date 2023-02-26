@@ -18,7 +18,7 @@ public class FlightLineTable {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
+    private Long id;
     @OneToOne(cascade = {CascadeType.ALL})
     private MissionDataTable msndat;
     @OneToOne(cascade = {CascadeType.ALL})

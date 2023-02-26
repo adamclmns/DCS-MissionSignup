@@ -4,8 +4,15 @@ class operation {
 		this.container = parameters.container;
 		this.ato_id = parameters.ato_id;
 		let that = this;
-		that.data = ato_data;
-		that.init();
+		
+		fetch('/api/ato/1', {
+			method: 'GET',
+			headers: {
+				'Accept': 'application/json',
+			},
+		}).then(response => that.data=response.json()).then(() => that.init());
+		// that.data = ato_data;
+		// that.init();
 		/*$.ajax({
 			url: "php/operation_class.php?ato_id="+that.ato_id,
 			success: function(result){
