@@ -14,7 +14,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Signup {
     private Long _id;
-
     private String type;
     // TODO: Maybe a Map here? JSON List order is not guaranteed.
     private List<String> users;

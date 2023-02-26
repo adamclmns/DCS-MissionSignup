@@ -13,6 +13,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BaseLocation {
     private Long _id;
-    private String name;
     private String icao;
+    private String name;
+
 }

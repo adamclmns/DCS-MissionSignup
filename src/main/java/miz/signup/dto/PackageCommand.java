@@ -20,6 +20,6 @@ public class PackageCommand {
     private String pkg_id;
     private String pkg_cmdr_unit_id;
     private Integer pkg_cmdr_mission_num;
-    private Callsign pgh_cmdr_cs;
+    private Callsign pkg_cmdr_cs;
 
 }

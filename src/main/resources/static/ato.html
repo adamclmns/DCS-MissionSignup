@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="theme-color" content="#333333">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+		<title>ATO Demo</title>
+		<!-- Main Styles -->
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- JQUERY -->
+		<script src="./libs/jquery/jquery-3.6.0.min.js"></script>
+
+		<!-- Bootstrap 5.0 -->
+		<link rel="stylesheet" href="./libs/bootstrap_v5/css/bootstrap.min.css"/>
+		<script src="./libs/bootstrap_v5/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="./libs/font-awesome/css/all.min.css">
+
+		<!-- Moment JS / TimePicker -->
+		<script src="./libs/timepicker/moment.js"></script>
+		<script src="./libs/timepicker/timepicker.js"></script>
+		<link rel="stylesheet" href="./libs/timepicker/timepicker.css">
+
+		<!-- Table Script -->
+		<script src="js/ato_data.js"></script>
+		<script src="js/coords.js"></script>
+		<script src="js/table_generator.js"></script>
+		<script src="js/ato_line.js"></script>
+		<script src="js/script.js"></script>
+	</head>
+	<body class="bootstrap">
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">ATO / Signups</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Timeline</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Flight Planner</button>
+		</li>
+	</ul>
+	
+	<div class="tab-content" id="myTabContent">
+	<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+		<div class="container-fluid">
+			<div class="ato-table"></div>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+	<div style="max-width: 1200px; overflow: scroll">
+		<table class="table table-hover" style="table-layout: fixed; vertical-align: middle; overflow: scroll">
+		<thead class="text-center">
+			<tr>
+				<td colspan="50">
+					TIMELINE
+				</td>
+			</tr>
+			<tr>
+				<td colspan="6">CALLSIGN</td>
+				<td colspan="6">MISSION #</td>
+
+				<td colspan="6">1600</td>
+				<td colspan="6">30</td>
+				<td colspan="6">1700</td>
+				<td colspan="6">30</td>
+				<td colspan="6">1800</td>
+				<td colspan="6">30</td>
+				<td colspan="6">1900</td>
+				<td colspan="6">30</td>			
+				<td colspan="6">2000</td>		
+			</tr>
+		</thead>
+		<tbody>			
+			<tr>
+				<td colspan="6"> AD01</td>
+				<td colspan="6">DRAGON 11/12/13/14</td>
+				
+				<td></td>
+				<td></td>
+				<td></td>
+
+				<td style="border-left: 1px solid black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td style="border-left: 1px dotted black"></td>
+				<td></td>
+				<td></td>
+				<td colspan="12" class="text-center text-white bg-primary"><strong>1645-1745<strong></td>
+
+				<td></td>
+				<td></td>
+				<td></td>
+				
+				<td style="border-left: 1px solid black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td style="border-left: 1px dotted black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				
+				<td style="border-left: 1px solid black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td style="border-left: 1px dotted black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				
+				<td style="border-left: 1px solid black"></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+						<tr>
+				<td colspan="6"> AD01</td>
+				<td colspan="6">DRAGON 21/22/23/24</td>
+				
+				<td></td>
+				<td></td>
+				<td></td>
+
+				<td style="border-left: 1px solid black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td style="border-left: 1px dotted black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+
+				
+				<td style="border-left: 1px solid black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td style="border-left: 1px dotted black"></td>
+				<td></td>
+				<td></td>
+				<td colspan="12" class="text-center text-white bg-primary"><strong>1745-1845<strong></td>
+				
+				<td></td>
+				<td></td>
+				<td></td>
+				
+				<td style="border-left: 1px solid black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td style="border-left: 1px dotted black"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				
+				<td style="border-left: 1px solid black"></td>
+				<td></td>
+				<td></td>
+			</tr>
+		<tbody>
+		</tbody>
+		</table>
+	
+	</div>
+	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+	</div>
+
+	</body>
+</html>
+

@@ -1,6 +1,7 @@
 package miz.signup.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AtoHeader {
+    @JsonProperty("id")
     private String identifier;
     private String name;
     private String timezone;

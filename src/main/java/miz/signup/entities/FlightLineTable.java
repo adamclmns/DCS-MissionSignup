@@ -23,15 +23,15 @@ public class FlightLineTable {
     private MissionDataTable msndat;
     @OneToOne(cascade = {CascadeType.ALL})
     private AirMissionLocationTable amsnloc;
-//    @OneToMany
-//    private List<GroundTargetLocation> gtgtloc;
-//    @OneToMany
-//    private List<PackageData> pkgdat;
-//    @OneToOne
-//    private PackageCommand pkgcmd;
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<GroundTargetLocationTable> gtgtloc = new java.util.ArrayList<>();
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<PackageDataTable> pkgdat = new java.util.ArrayList<>();
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private PackageCommandTable pkgcmd;
     @ManyToOne(cascade = {CascadeType.ALL})
     private AirRefuelInfoTable arinfo;
-//    @OneToOne
-//    private List<Signup> signups;
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<SignUpTable> signups;
 }
 

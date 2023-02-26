@@ -25,9 +25,10 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MissionData {
     private Long _id;
-    private String taskedUnit;
+    private String tasked_unit;
     private Integer mission_num;
     private Integer num_ac;
+    private String ac_type;
     private Callsign ac_cs;
     private EMissionType prim_msn;
     private EMissionType sec_msn;

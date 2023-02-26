@@ -1,0 +1,213 @@
+// JSON Document
+{ 
+	"header": {
+        "id": "AD", // ATO Day identifier is 2 letters.
+        "name": "Red Squall Phase 2", // Event Name
+		"timezone": "Eastern",
+        "time_from": { "ingame": "2022-12-07 19:04:27", "outgame": "2022-12-07 19:04:27" }, // Time the event starts
+        "time_to": { "ingame": "2022-12-07 19:04:27", "outgame": "2022-12-07 19:04:27"}, // Time the event ends
+		"documents": [ 
+			{ "directory": "uploads/pdf/fdgh1w.pf", "name": "Threat Brief" }
+		]
+    },
+    "lines": [
+        {
+            "msndat": {
+                "tasked_unit": "VMFA-122", // Unit name shorthanded
+                "mission_num": 001, //mission number, letters is the ATO Day. the 3 numbers is the flight identifier starting at 001 and counting up
+				"num_ac": 2,
+                "ac_type": "F/A-18C lot. 20",
+                "ac_cs": { "prefix": "NIKEL", "suffix": [11,12] },
+                "prim_msn": "STK",
+                "sec_msn": "SCAR",
+                "dep_location": { "icao": "UG27", "name": "Vaziani Airport" },
+                "rec_location": { "icao": "CVN-72", "name": "USS Abraham Lincoln" },
+                "mode_3": [2211,2212]
+            },
+			"gtgtloc": [ // Ground Target Location(s) Information
+				{
+					"target_id": 001,
+					"net": null, //No Earlier Than
+					"nlt": null, // Not Later Than
+					"tot": "2023-05-03 18:00:00", // Time on Target
+					"priority": "P", // "P" = Primary, "A" = Alternate
+					"description": "Air Traffic Control Tower",
+					"dmpi": { "lat": 51.754534, "long": 36.296602, "elev": 509 }
+				},
+				{
+					"target_id": 002,
+					"net": null, //No Earlier Than
+					"nlt": null, // Not Later Than
+					"tot": "2023-05-03 18:00:00", // Time on Target
+					"priority": "A", // "P" = Primary, "A" = Alternate
+					"description": "Runway",
+					"dmpi": { "lat": 51.750569, "long": 36.295765, "elev": 509 }
+				},
+		   	],
+			"pkgdat": [
+				{
+					"pkg_id": "A",
+					"tasked_unit": "VMFA-122",
+					"mission_num": 002,
+					"prim_msn": "DCA",
+					"num_ac": 2,
+					"ac_type": "F/A-18C lot. 20",
+					"ac_cs":  { "prefix": "NIKEL", "suffix": [21,22,23,24] },
+				},
+				{
+					"pkg_id": "A",
+					"tasked_unit": "VMA-223",
+					"mission_num": 003,
+					"prim_msn": "STK",
+					"num_ac": 4,
+					"ac_type": "AV8B N/A",
+					"ac_cs":  { "prefix": "SHANK", "suffix": [11,12,13,14] },
+				}
+			],
+			"arinfo": {
+				"tnkr_cs": { "prefix": "SHELL", "suffix": [11] },
+				"tnkr_cp": "ARIP ALAMO",
+				"tnkr_alt": 200,
+				"tnkr_speed": 276,
+				"offload": 7.5, // in thousands of pounds
+				"frequency": { "name": "AR701", "freq": 316.700 },
+				"ac_type": "KC-135 MPRS",
+				"refuel_system": "CDT", // BOM = Boom, CDT = ?
+				"tacan": "107X"
+			},
+			"signups": [
+				{ "type": "Pilot", "users": ["Terry", null, "B-SACC", null] }
+			]
+        },
+		{
+            "msndat": {
+                "tasked_unit": "VMFA-122", // Unit name shorthanded
+                "mission_num": 002, //mission number, letters is the ATO Day. the 3 numbers is the flight identifier starting at 001 and counting up
+				"num_ac": 4,
+                "ac_type": "F/A-18C lot. 20",
+                "ac_cs": { "prefix": "NIKEL", "suffix": [21,22,23,24] },
+                "prim_msn": "OCA",
+                "sec_msn": "DCA",
+                "dep_location": { "icao": "UG27", "name": "Vaziani Airport" },
+                "rec_location": { "icao": "CVN-72", "name": "USS Abraham Lincoln" },
+                "mode_3": [2221,2222,2223,2224]
+            },
+			"gtgtloc": [ // Ground Target Location(s) Information
+				{
+					"target_id": 002,
+					"net": null, //No Earlier Than
+					"nlt": null, // Not Later Than
+					"tot": "2023-05-03 18:00:00", // Time on Target
+					"priority": "P", // "P" = Primary, "A" = Alternate
+					"description": "Runway",
+					"dmpi": { "lat": 51.750569, "long": 36.295765, "elev": 509 }
+				},
+				{
+					"target_id": 001,
+					"net": null, //No Earlier Than
+					"nlt": null, // Not Later Than
+					"tot": "2023-05-03 18:00:00", // Time on Target
+					"priority": "A", // "P" = Primary, "A" = Alternate
+					"description": "Air Traffic Control Tower",
+					"dmpi": { "lat": 51.754534, "long": 36.296602, "elev": 509 }
+				}
+		   	],
+			"pkgcmd": {
+				"pkg_id": "A",
+				"pkg_cmdr_unit_id": "VMFA-122",
+				"pkg_cmdr_mission_num": 001,
+				"pkg_cmdr_cs": { "prefix": "NIKEL", "suffix": [11] }
+			},
+			"arinfo": {
+				"tnkr_cs": { "prefix": "SHELL", "suffix": [11] },
+				"tnkr_cp": "ARIP ALAMO",
+				"tnkr_alt": 200,
+				"tnkr_speed": 276,
+				"offload": 7.5, // in thousands of pounds
+				"frequency": { "name": "AR701", "freq": 316.700 },
+				"ac_type": "KC-135 MPRS",
+				"refuel_system": "CDT", // BOM = Boom, CDT = ?
+				"tacan": "107X"
+			},
+			"signups": [
+				{ "type": "Pilot", "users": [null, null, null, "Ram"] }
+			]
+		},
+		{
+            "msndat": {
+                "tasked_unit": "VMA-223", // Unit name shorthanded
+                "mission_num": 003, //mission number, letters is the ATO Day. the 3 numbers is the flight identifier starting at 001 and counting up
+				"num_ac": 4,
+                "ac_type": "AV8B N/A",
+                "ac_cs": { "prefix": "SHANK", "suffix": [11,12,13,14] },
+                "prim_msn": "STK",
+                "sec_msn": "RSEAD",
+                "dep_location": { "icao": "FPFL", "name": "FARP Florida" },
+                "rec_location": { "icao": "FPFL", "name": "FARP Florida" },
+                "mode_3": [2321,2322,2323,2324]
+            },
+           "amsnloc": {
+				"start_time": "2022-12-24 20:55:20",
+				"end_time": "2022-12-24 22:00:00",
+				"location_name": "ROZ DAKOTA",
+				"msn_altitude": "280"
+			},
+			"pkgcmd": {
+				"pkg_id": "A",
+				"pkg_cmdr_unit_id": "VMFA-122",
+				"pkg_cmdr_mission_num": 001,
+				"pkg_cmdr_cs":{ "prefix": "NIKEL", "suffix": [11] }
+			},
+			"arinfo": {
+				"tnkr_cs": { "prefix": "SHELL", "suffix": [11] },
+				"tnkr_cp": "ARIP ALAMO",
+				"tnkr_alt": 200,
+				"tnkr_speed": 276,
+				"offload": 7.5, // in thousands of pounds
+				"frequency": { "name": "AR701", "freq": 316.700 },
+				"ac_type": "KC-135 MPRS",
+				"refuel_system": "CDT", // BOM = Boom, CDT = ?
+				"tacan": "107X"
+			},
+			"signups": [
+				{ "type": "Pilot", "users": [null, "Cali", "Koozie", null] }
+			]
+		},
+		{
+            "msndat": {
+                "tasked_unit": "VF-2", // Unit name shorthanded
+                "mission_num": 004, //mission number, letters is the ATO Day. the 3 numbers is the flight identifier starting at 001 and counting up
+				"num_ac": 4,
+                "ac_type": "F-14B",
+                "ac_cs": { "prefix": "BULLET", "suffix": [11,12,13,14] },
+                "prim_msn": "DCA",
+                "sec_msn": null,
+                "dep_location": { "icao": "CVN-72", "name": "USS Abraham Lincoln" },
+                "rec_location": { "icao": "CVN-72", "name": "USS Abraham Lincoln" },
+                "mode_3": [2011,2012,2013,2014]
+            },
+           "amsnloc": {
+				"start_time": "2022-12-24 20:00:00",
+				"end_time": "2022-12-24 22:00:00",
+				"location_name": "CAP ALASKA",
+				"msn_altitude": 300
+			},
+			"arinfo": {
+				"tnkr_cs": { "prefix": "TEXACO", "suffix": [11] },
+				"tnkr_cp": "ARIP ALAMO",
+				"tnkr_alt": 230,
+				"tnkr_speed": 278,
+				"offload": 8.0, // in thousands of pounds
+				"frequency": { "name": "AR801", "freq": 318.800 },
+				"ac_type": "KC-135 MPRS",
+				"refuel_system": "CDT", // BOM = Boom, CDT = ?
+				"tacan": "108X"
+			},
+			"signups": [
+				{ "type": "Pilot", "users": [null, "Kez", "Shado", null] },
+				{ "type": "RIO", "users": [null, null, "Stretch", "Viking"] }
+			]
+		},
+    ]
+}
+

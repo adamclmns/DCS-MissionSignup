@@ -49,7 +49,7 @@ public class EntityMapper {
                 .frequency(map(refuelInfo.getFrequency()))
                 .ac_type(refuelInfo.getAc_type())
                 .offload(refuelInfo.getOffload())
-                .refule_system(refuelInfo.getRefule_system())
+                .refule_system(refuelInfo.getRefuel_system())
                 .tnkr_alt(refuelInfo.getTnkr_alt())
                 .tnkr_cp(refuelInfo.getTnkr_cp())
                 .tnkr_cs(map(refuelInfo.getTnkr_cs()))
@@ -105,7 +105,7 @@ public class EntityMapper {
                 .num_ac(missionData.getNum_ac())
                 .mission_num(missionData.getMission_num())
                 .sec_msn(missionData.getSec_msn())
-                .taskedUnit(missionData.getTaskedUnit())
+                .taskedUnit(missionData.getTasked_unit())
                 .build();
     }
 

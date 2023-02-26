@@ -16,5 +16,6 @@ public class Coordinate {
     private Double lat;
     @JsonProperty("long")
     private Double lon;
+    @JsonProperty("elev")
     private Integer elevation;
 }

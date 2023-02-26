@@ -113,7 +113,7 @@ public class DtoMapper {
                 .ac_type(airRefuelInfoTable.getAc_type())
                 .frequency(map(airRefuelInfoTable.getFrequency()))
                 .offload(airRefuelInfoTable.getOffload())
-                .refule_system(airRefuelInfoTable.getRefule_system())
+                .refuel_system(airRefuelInfoTable.getRefule_system())
                 .tacan(airRefuelInfoTable.getTacan())
                 .tnkr_alt(airRefuelInfoTable.getTnkr_alt())
                 .tnkr_cp(airRefuelInfoTable.getTnkr_cp())

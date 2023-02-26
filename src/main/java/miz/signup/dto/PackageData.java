@@ -26,6 +26,8 @@ public class PackageData {
     private String tasked_unit;
     private Integer mission_num;
     private EMissionType prim_msn;
+    private Integer num_ac;
     private String ac_type;
     private Callsign ac_cs;
+
 }

@@ -31,6 +31,6 @@ public class AirRefuelInfo {
     private Double offload;
     private Frequency frequency;
     private String ac_type;
-    private String refule_system;
+    private String refuel_system;
     private String tacan;
 }

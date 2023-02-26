@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="theme-color" content="#333333">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+		<title>ATO Demo</title>
+		<!-- Main Styles -->
+		<link rel="stylesheet" href="css/style.css">
+		
+		<!-- JQUERY -->
+		<script src="./libs/jquery/jquery-3.6.0.min.js"></script>
+		
+		<!-- Bootstrap 4 -->
+		<link rel="stylesheet" href="./libs/bootstrap_v5/css/bootstrap.min.css"/>
+		<script src="./libs/bootstrap_v5/js/bootstrap.bundle.min.js"></script>
+	
+		<!-- Font Awesome --> 
+		<link rel="stylesheet" href="./libs/font-awesome/css/all.min.css">
+		
+		<!-- Moment JS / TimePicker -->
+		<script src="./libs/timepicker/moment.js"></script>
+		<script src="./libs/timepicker/timepicker.js"></script>
+		<link rel="stylesheet" href="./libs/timepicker/timepicker.css">
+	</head>
+	<body class="bootstrap">
+		<div class="container-fluid">
+
+
+		</div>
+		<table class="table table-striped-columns h5" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th scope="col">Event</th>
+					<th scope="col">Time From</th>
+					<th scope="col">Time To</th>
+				</tr>
+			</thead>
+			  <tbody class="table-group-divider">
+				<tr>
+					<td>EXERCISE GREEN FLAG 23-1</td>
+					<td>1600EST 23JUNE2022</td>
+					<td>2200EST 23JUNE2022</td>
+				</tr>
+			  </tbody>
+			</table>
+<div class="accordion" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed py-1" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+		<table class="table table-striped-columns" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th scope="col">Tasked Unit</th>
+					<th scope="col">Mission Number</th>
+					<th scope="col">Callsign</th>
+					<th scope="col">Aircraft Type</th>
+					<th scope="col">Primary Mission</th>
+					<th scope="col">Secondary Mission</th>
+					<th scope="col">Departure Location</th>
+					<th scope="col">Recovery Location</th>
+					<th scope="col">Mode 3</th>
+				</tr>
+			</thead>
+			  <tbody class="table-group-divider">
+				<tr>
+					<td>VF-2</td>
+					<td>KL05</td>
+					<td>MANDO 11/12</td>
+					<td>F-14B</td>
+					<td>CAP</td>
+					<td>ESC</td>
+					<td>UG27</td>
+					<td>KLSV</td>
+					<td>0211/2022</td>
+				</tr>
+			  </tbody>
+			</table>
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+		<table class="table table-striped-columns table-light" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th class="text-center" colspan="5">
+						SIGNUPS
+					</th>
+				</tr>
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">Flight Lead</th>
+					<th scope="col">Dash-2</th>
+					<th scope="col">Dash-3</th>
+					<th scope="col">Dash-4</th>
+				</tr>
+			</thead>
+			   <tbody class="table-group-divider align-middle">
+				<tr>
+					<th>Pilot</th>
+					<td><button type="button" class="btn btn-primary btn-sm fs-6 text">OPEN</button></td>
+					<td>B-SACC</td>
+					<td>RAM</td>
+					<td>Cali</td>
+				</tr>
+				<tr>
+					<th scope="row">RIO</th>
+					<td>Kez</td>
+					<td>Shado</td>
+					<td><button type="button" class="btn btn-primary btn-sm fs-6 text">OPEN</button></td>
+					<td>Stretch</td>
+				</tr>
+			  </tbody>
+		</table>
+		<table class="table table-striped-columns table-dark" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th class="text-center" colspan="4">AIR MISSION LOCATION</th>
+				</tr>
+				<tr>
+					<th scope="col">Start Time</th>
+					<th scope="col">End Time</th>
+					<th scope="col">Location Name</th>
+					<th scope="col">Altitude</th>
+				</tr>
+			</thead>
+			   <tbody class="table-group-divider">
+				<tr>
+					<td>0700G</td>
+					<td>0900G</td>
+					<td>CAP Alaska</td>
+					<td>300</td>
+				</tr>
+			  </tbody>
+			</table>
+		<table class="table table-striped-columns table-dark" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th class="text-center" colspan="4">CONTROLLING AGENCY</th>
+				</tr>
+				<tr>
+					<th scope="col">Callsign</th>
+					<th scope="col">Contact Point</th>
+					<th scope="col">Primary Frequency </th>
+					<th scope="col">Alternate Frequency</th>
+				</tr>
+			</thead>
+			   <tbody class="table-group-divider">
+				<tr>
+					<td>BANGER</td>
+					<td>CP Anchorage</td>
+					<td>344.025 AM</td>
+					<td>228.850</td>
+				</tr>
+			  </tbody>
+			</table>
+		<table class="table table-striped-columns table-dark" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th class="text-center" colspan="5">AIR REFEULING INFORMATION</th>
+				</tr>
+				<tr>
+					<th scope="col">Callsign</th>
+					<th scope="col">Position</th>
+					<th scope="col">Altitude</th>
+					<th scope="col">Frequency</th>
+					<th scope="col">TACAN</th>
+				</tr>
+			</thead>
+			   <tbody class="table-group-divider">
+				<tr>
+					<td>ARCO 11</td>
+					<td>AR801</td>
+					<td>FL 250</td>
+					<td>317.850</td>
+					<td>108X</td>
+				</tr>
+			  </tbody>
+		  </table>
+		</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+		<table class="table table-striped-columns"  style="table-layout: fixed;">
+		  <tbody>
+			<tr>
+				<td>55TH FS</td>
+				<td>KL06</td>
+				<td>SHOOTER 21/22</td>
+				<td>F-16 bl. 50</td>
+				<td>STK</td>
+				<td>AR</td>
+				<td>UG27</td>
+				<td>KLSV</td>
+				<td>5521/5522</td>
+			</tr>
+		  </tbody>
+		</table>
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+    	<div class="accordion-body">
+		<table class="table table-striped-columns table-dark" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th class="text-center" colspan="8">GROUND TARGET LOCATION(S)</th>
+				</tr>
+				<tr>
+					<th scope="col">No Earlier Than</th>
+					<th scope="col">Time on Target</th>
+					<th scope="col">No Later Than</th>
+					<th scope="col">Priority</th>
+					<th scope="col">Target ID</th>
+					<th scope="col">Target Type</th>
+					<th scope="col">Target Description</th>
+					<th scope="col">DMPI Coordinates</th>
+					<th scope="col">DMPI Elevation</th>
+				</tr>
+			</thead>
+			   <tbody class="table-group-divider">
+				<tr>
+					<td>0705G</td>
+					<td>-</td>
+					<td>0720G</td>
+					<td>Primary</td>
+					<td>AB001</td>
+					<td>Command Post</td>
+					<td>Reinforced Bunker</td>
+					<td>37T GG 50122 18049</td>
+					<td>1474'</td>
+				</tr>
+				<tr>
+					<td>-</td>
+					<td>0730G</td>
+					<td>-</td>
+					<td>Alternate</td>
+					<td>AB002</td>
+					<td>Assembly Area</td>
+					<td>60-80 Armored Vehicles</td>
+					<td>37T GG 53548 12902</td>
+					<td>1320'</td>
+				</tr>
+			  </tbody>
+			</table>	
+		</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+	<table class="table table-striped-columns"  style="table-layout: fixed;">
+		  <tbody>
+			<tr>
+				<td>VMFA-122</td>
+				<td>KL07</td>
+				<td>NIKEL 31/32</td>
+				<td>F/A-18C lot. 20</td>
+				<td>CAS</td>
+				<td>AR</td>
+				<td>UG27</td>
+				<td>KLSV</td>
+				<td>2231/2232</td>
+			</tr>
+		  </tbody>
+		</table>
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+		<table class="table table-striped-columns table-dark" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th class="text-center" colspan="4">FAC INFORMATION</th>
+				</tr>
+				<tr>
+					<th scope="col">Callsign</th>
+					<th scope="col">Primary Frequency</th>
+					<th scope="col">Secondary Frequency</th>
+					<th scope="col">Contact Point</th>
+				</tr>
+			</thead>
+			   <tbody class="table-group-divider">
+				<tr>
+					<td>SPARK 49</td>
+					<td>280.125</td>
+					<td>302.325</td>
+					<td>CP Houston</td>
+				</tr>
+			  </tbody>
+		  </table>
+		</div>
+    </div>
+  </div>
+</div>
+	</body>
+
+</html>
