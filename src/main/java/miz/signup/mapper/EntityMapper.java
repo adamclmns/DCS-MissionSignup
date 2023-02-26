@@ -15,11 +15,17 @@ public class EntityMapper {
         }
         builder
                 .name(ato.getHeader().getName())
-                .identifier(ato.getHeader().getIdentifier())
-                .time_to(
-                        mapToEnd(ato.getHeader().getTime_from())
-                ).time_from(
-                        maptoStart(ato.getHeader().getTime_to())
+                .identifier(ato.getHeader().getId())
+                .time_to_ingame(
+                        ato.getHeader().getTime_to().getIngame())
+                .time_to_outgame(
+                        ato.getHeader().getTime_to().getOutgame()
+                )
+                .time_from_ingame(
+                        ato.getHeader().getTime_from().getIngame()
+                )
+                .time_from_outgame(
+                        ato.getHeader().getTime_from().getOutgame()
                 )
                 .documents(
                         map(ato.getHeader().getDocuments())
@@ -257,27 +263,7 @@ public class EntityMapper {
         return null;
     }
 
-    public static DualStartTimesTable maptoStart(DualZonedDateTime start) {
-        if (start != null) {
-            DualStartTimesTable.DualStartTimesTableBuilder builder = DualStartTimesTable.builder();
-            if (start.get_id() != null) {
-                builder.id(start.get_id());
-            }
-            return builder.ingame(start.getIngame()).outgame(start.getOutgame()).build();
-        }
-        return null;
-    }
 
-    public static DualEndTimesTable mapToEnd(DualZonedDateTime end) {
-        if (end != null) {
-            DualEndTimesTable.DualEndTimesTableBuilder builder = DualEndTimesTable.builder();
-            if (end.get_id() != null) {
-                builder.id(end.get_id());
-            }
-            return builder.ingame(end.getIngame()).outgame(end.getOutgame()).build();
-        }
-        return null;
-    }
 
 
 }

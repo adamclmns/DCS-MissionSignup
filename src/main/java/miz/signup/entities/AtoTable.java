@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 import miz.signup.dto.BriefingDocument;
 import org.hibernate.Hibernate;
+import org.springframework.cglib.core.Local;
+import org.springframework.data.repository.cdi.Eager;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
@@ -31,10 +35,10 @@ public class AtoTable {
     @OneToMany(cascade = {CascadeType.ALL})
     @ToString.Exclude
     private List<BriefingDocumentTable> documents;
-    @OneToOne(cascade = {CascadeType.ALL})
-    private DualStartTimesTable time_from;
-    @OneToOne(cascade = {CascadeType.ALL})
-    private DualEndTimesTable time_to;
+    private LocalDateTime time_from_ingame;
+    private LocalDateTime time_from_outgame;
+    private LocalDateTime time_to_ingame;
+    private LocalDateTime time_to_outgame;
     @OneToMany(cascade = {CascadeType.ALL})
     @ToString.Exclude
     private List<FlightLineTable> flightLines;

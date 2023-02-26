@@ -15,7 +15,7 @@ import lombok.*;
 public class FrequencyTable {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @Column(name = "name")
     private String name;

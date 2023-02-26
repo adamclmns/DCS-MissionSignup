@@ -2,13 +2,17 @@ package miz.signup.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import miz.signup.dto.ATO;
+import miz.signup.dto.BriefingDocument;
 import miz.signup.dto.EMissionType;
 import miz.signup.entities.*;
 import miz.signup.mapper.DtoMapper;
 import miz.signup.mapper.EntityMapper;
 import miz.signup.repos.AtoRepository;
+import miz.signup.repos.BriefingDocumentRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -17,21 +21,28 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequestMapping("api/ato")
 @RestController
+@Slf4j
 public class AtoController {
 
-    final
-    AtoRepository atoRepository;
+    final AtoRepository atoRepository;
     final ObjectMapper objectMapper;
+    private final BriefingDocumentRepository briefingDocumentRepository;
 
+    @PostConstruct
     private void buildATOFromNothing() {
-
+        log.info("Creating First record");
         try {
             String initialJson = new String(getClass().getClassLoader().getResourceAsStream("test_ATO_1.json").readAllBytes());
             ATO atoObject = objectMapper.readValue(initialJson, ATO.class);
-            atoRepository.save(EntityMapper.map(atoObject));
+            AtoTable atoEntity = EntityMapper.map(atoObject);
+
+            atoRepository.save(atoEntity);
+
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -40,11 +51,11 @@ public class AtoController {
 
     }
 
-    public AtoController(AtoRepository atoRepository,ObjectMapper objectMapper) {
+    public AtoController(AtoRepository atoRepository, BriefingDocumentRepository briefingDocumentRepository,ObjectMapper om) {
         this.atoRepository = atoRepository;
-        this.atoRepository.deleteAll();
-        this.objectMapper = objectMapper;
-        buildATOFromNothing();;
+        this.briefingDocumentRepository = briefingDocumentRepository;
+        this.objectMapper = om;
+
 
     }
 

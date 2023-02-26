@@ -1,21 +1,21 @@
 {
-  "_id": null,
+
   "header": {
     "name": "Red Squall Phase 2",
     "timezone": "Eastern",
     "time_from": {
-      "_id": null,
-      "ingame": "2022-12-07T19:04:27",
+
+      "ingame": "2022-12-07T14:04:27",
       "outgame": "2022-12-07T19:04:27"
     },
     "time_to": {
-      "_id": null,
-      "ingame": "2022-12-07T19:04:27",
-      "outgame": "2022-12-07T19:04:27"
+
+      "ingame": "2022-12-07T15:04:27",
+      "outgame": "2022-12-07T20:04:27"
     },
     "documents": [
       {
-        "_id": null,
+
         "directory": "uploads/pdf/fdgh1w.pf",
         "name": "Threat Brief"
       }
@@ -24,15 +24,15 @@
   },
   "lines": [
     {
-      "_id": 1,
+
       "msndat": {
-        "_id": null,
+
         "tasked_unit": "VMFA-122",
         "mission_num": 1,
         "num_ac": 2,
         "ac_type": "F/A-18C lot. 20",
         "ac_cs": {
-          "_id": null,
+
           "prefix": "NIKEL",
           "suffix": [
             11,
@@ -42,12 +42,12 @@
         "prim_msn": "STK",
         "sec_msn": "SCAR",
         "dep_location": {
-          "_id": null,
+
           "icao": "UG27",
           "name": "Vaziani Airport"
         },
         "rec_location": {
-          "_id": null,
+
           "icao": "CVN-72",
           "name": "USS Abraham Lincoln"
         },
@@ -58,7 +58,7 @@
       },
       "gtgtloc": [
         {
-          "_id": null,
+
           "target_id": 1,
           "net": null,
           "nlt": null,
@@ -66,14 +66,13 @@
           "priority": "P",
           "description": "Air Traffic Control Tower",
           "dmpi": {
-            "_id": null,
+
             "lat": 51.754534,
             "long": 36.296602,
             "elev": 509
           }
         },
         {
-          "_id": null,
           "target_id": 2,
           "net": null,
           "nlt": null,
@@ -81,7 +80,7 @@
           "priority": "A",
           "description": "Runway",
           "dmpi": {
-            "_id": null,
+
             "lat": 51.750569,
             "long": 36.295765,
             "elev": 509
@@ -90,7 +89,6 @@
       ],
       "pkgdat": [
         {
-          "_id": null,
           "pkg_id": "A",
           "tasked_unit": "VMFA-122",
           "mission_num": 2,
@@ -98,7 +96,6 @@
           "num_ac": 2,
           "ac_type": "F/A-18C lot. 20",
           "ac_cs": {
-            "_id": null,
             "prefix": "NIKEL",
             "suffix": [
               21,
@@ -109,7 +106,6 @@
           }
         },
         {
-          "_id": null,
           "pkg_id": "A",
           "tasked_unit": "VMA-223",
           "mission_num": 3,
@@ -117,7 +113,7 @@
           "num_ac": 4,
           "ac_type": "AV8B N/A",
           "ac_cs": {
-            "_id": null,
+
             "prefix": "SHANK",
             "suffix": [
               11,
@@ -129,9 +125,9 @@
         }
       ],
       "arinfo": {
-        "_id": null,
+
         "tnkr_cs": {
-          "_id": null,
+
           "prefix": "SHELL",
           "suffix": [
             11
@@ -142,7 +138,7 @@
         "tnkr_speed": 276,
         "offload": 7.5,
         "frequency": {
-          "_id": null,
+
           "name": "AR701",
           "freq": 316.7
         },
@@ -152,7 +148,7 @@
       },
       "signups": [
         {
-          "_id": null,
+
           "type": "Pilot",
           "users": [
             "Terry",
@@ -164,15 +160,15 @@
       ]
     },
     {
-      "_id": 2,
+
       "msndat": {
-        "_id":null,
+
         "tasked_unit": "VMFA-122",
         "mission_num": 2,
         "num_ac": 4,
         "ac_type": "F/A-18C lot. 20",
         "ac_cs": {
-          "_id": null,
+
           "prefix": "NIKEL",
           "suffix": [
             21,
@@ -184,12 +180,12 @@
         "prim_msn": "OCA",
         "sec_msn": "DCA",
         "dep_location": {
-          "_id": null,
+
           "icao": "UG27",
           "name": "Vaziani Airport"
         },
         "rec_location": {
-          "_id": null,
+
           "icao": "CVN-72",
           "name": "USS Abraham Lincoln"
         },
@@ -202,22 +198,21 @@
       },
       "gtgtloc": [
         {
-          "_id": null,
+
           "target_id": 2,
           "net": null,
           "nlt": null,
-          "tot": "2023-05-03T18:00:00",
+          "tot": "2023-05-03T18:05:00",
           "priority": "P",
           "description": "Runway",
           "dmpi": {
-            "_id": null,
             "lat": 51.750569,
             "long": 36.295765,
             "elev": 509
           }
         },
         {
-          "_id": null,
+
           "target_id": 1,
           "net": null,
           "nlt": null,
@@ -225,7 +220,7 @@
           "priority": "A",
           "description": "Air Traffic Control Tower",
           "dmpi": {
-            "_id": null,
+
             "lat": 51.754534,
             "long": 36.296602,
             "elev": 509
@@ -233,12 +228,12 @@
         }
       ],
       "pkgcmd": {
-        "_id":null,
+
         "pkg_id": "A",
         "pkg_cmdr_unit_id": "VMFA-122",
         "pkg_cmdr_mission_num": 1,
         "pkg_cmdr_cs": {
-          "_id": null,
+
           "prefix": "NIKEL",
           "suffix": [
             11
@@ -246,9 +241,9 @@
         }
       },
       "arinfo": {
-        "_id": null,
+
         "tnkr_cs": {
-          "_id": null,
+
           "prefix": "SHELL",
           "suffix": [
             11
@@ -259,7 +254,7 @@
         "tnkr_speed": 276,
         "offload": 7.5,
         "frequency": {
-          "_id": null,
+
           "name": "AR701",
           "freq": 316.7
         },
@@ -269,7 +264,7 @@
       },
       "signups": [
         {
-          "_id": null,
+
           "type": "Pilot",
           "users": [
             null,
@@ -281,15 +276,15 @@
       ]
     },
     {
-      "_id": 3,
+
       "msndat": {
-        "_id":null,
+
         "tasked_unit": "VMA-223",
         "mission_num": 3,
         "num_ac": 4,
         "ac_type": "AV8B N/A",
         "ac_cs": {
-          "_id": null,
+
           "prefix": "SHANK",
           "suffix": [
             11,
@@ -301,12 +296,12 @@
         "prim_msn": "STK",
         "sec_msn": "RSEAD",
         "dep_location": {
-          "_id": null,
+
           "icao": "FPFL",
           "name": "FARP Florida"
         },
         "rec_location": {
-          "_id": null,
+
           "icao": "FPFL",
           "name": "FARP Florida"
         },
@@ -318,19 +313,19 @@
         ]
       },
       "amsnloc": {
-        "_id":null,
+
         "start_time": "2022-12-24T20:55:20",
         "end_time": "2022-12-24T22:00:00",
         "location_name": "ROZ DAKOTA",
         "msn_altitude": 280
       },
       "pkgcmd": {
-        "_id":null,
+
         "pkg_id": "A",
         "pkg_cmdr_unit_id": "VMFA-122",
         "pkg_cmdr_mission_num": 1,
         "pkg_cmdr_cs": {
-          "_id": null,
+
           "prefix": "NIKEL",
           "suffix": [
             11
@@ -338,9 +333,9 @@
         }
       },
       "arinfo": {
-        "_id": null,
+
         "tnkr_cs": {
-          "_id": null,
+
           "prefix": "SHELL",
           "suffix": [
             11
@@ -351,7 +346,7 @@
         "tnkr_speed": 276,
         "offload": 7.5,
         "frequency": {
-          "_id": null,
+
           "name": "AR701",
           "freq": 316.7
         },
@@ -361,7 +356,7 @@
       },
       "signups": [
         {
-          "_id": null,
+
           "type": "Pilot",
           "users": [
             null,
@@ -373,15 +368,15 @@
       ]
     },
     {
-      "_id": 4,
+
       "msndat": {
-        "_id":null,
+
         "tasked_unit": "VF-2",
         "mission_num": 4,
         "num_ac": 4,
         "ac_type": "F-14B",
         "ac_cs": {
-          "_id": null,
+
           "prefix": "BULLET",
           "suffix": [
             11,
@@ -393,12 +388,10 @@
         "prim_msn": "DCA",
         "sec_msn": null,
         "dep_location": {
-          "_id": null,
           "icao": "CVN-72",
           "name": "USS Abraham Lincoln"
         },
         "rec_location": {
-          "_id": null,
           "icao": "CVN-72",
           "name": "USS Abraham Lincoln"
         },
@@ -409,7 +402,7 @@
           2014
         ]
       },
-      "amsnloc": {"_id":null,
+      "amsnloc": {
 
         "start_time": "2022-12-24T20:00:00",
         "end_time": "2022-12-24T22:00:00",
@@ -417,9 +410,7 @@
         "msn_altitude": 300
       },
       "arinfo": {
-        "_id": null,
         "tnkr_cs": {
-          "_id": null,
           "prefix": "TEXACO",
           "suffix": [
             11
@@ -430,7 +421,6 @@
         "tnkr_speed": 278,
         "offload": 8.0,
         "frequency": {
-          "_id": null,
           "name": "AR801",
           "freq": 318.8
         },
@@ -440,7 +430,6 @@
       },
       "signups": [
         {
-          "_id": null,
           "type": "Pilot",
           "users": [
             null,
@@ -450,7 +439,6 @@
           ]
         },
         {
-          "_id": null,
           "type": "RIO",
           "users": [
             null,

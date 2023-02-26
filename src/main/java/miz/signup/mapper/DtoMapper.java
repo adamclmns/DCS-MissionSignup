@@ -27,10 +27,10 @@ public class DtoMapper {
 
     public static ATO map(AtoTable airTaskingOrder) {
         return ATO.builder().header(AtoHeader.builder()
-                        .identifier(airTaskingOrder.getIdentifier())
+                        .id(airTaskingOrder.getIdentifier())
                         .name(airTaskingOrder.getName())
-                        .time_from(map(airTaskingOrder.getTime_from()))
-                        .time_to(map(airTaskingOrder.getTime_to()))
+                        .time_from(DualZonedDateTime.builder().ingame(airTaskingOrder.getTime_from_ingame()).outgame(airTaskingOrder.getTime_from_outgame()).build())
+                        .time_to(DualZonedDateTime.builder().ingame(airTaskingOrder.getTime_to_ingame()).outgame(airTaskingOrder.getTime_from_outgame()).build())
                         .documents(mapBriefing(airTaskingOrder.getDocuments()))
                         .timezone(airTaskingOrder.getTimezone())
                         .build())
@@ -60,34 +60,7 @@ public class DtoMapper {
         return null;
     }
 
-    public static DualZonedDateTime map(DualEndTimesTable endTime) {
-        if (endTime != null) {
-            DualZonedDateTime.DualZonedDateTimeBuilder builder = DualZonedDateTime.builder();
-            if (endTime.getId() != null) {
-                builder
-                        ._id(endTime.getId());
-            }
-            return builder.ingame(endTime.getIngame())
-                    .outgame(endTime.getOutgame())
-                    .build();
 
-        }
-        return null;
-    }
-
-    public static DualZonedDateTime map(DualStartTimesTable endTime) {
-        if (endTime != null) {
-            DualZonedDateTime.DualZonedDateTimeBuilder builder = DualZonedDateTime.builder();
-            if (endTime.getId() != null) {
-                builder._id(endTime.getId());
-            }
-            return builder
-                    .ingame(endTime.getIngame())
-                    .outgame(endTime.getOutgame())
-                    .build();
-        }
-        return null;
-    }
 
     public static List<FlightLine> mapFlightLines(List<FlightLineTable> lines) {
         if (lines != null && !lines.isEmpty()) {

@@ -14,11 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.IOException;
 
 
-@SpringBootTest
+
 public class ATOTableMappingTest {
 
-    @Autowired
-    ObjectMapper om;
+
+    private final ObjectMapper om = new ObjectMapper();
     @Test
     public void convertAtoToTableEntity() throws IOException {
         String initialJson = new String(getClass().getClassLoader().getResourceAsStream("test_ATO_1.json").readAllBytes());

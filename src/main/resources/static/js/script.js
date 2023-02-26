@@ -3,14 +3,10 @@ class operation {
 	constructor(parameters) {
 		this.container = parameters.container;
 		this.ato_id = parameters.ato_id;
+		this.data = parameters.data;
 		let that = this;
-		
-		fetch('/api/ato/1', {
-			method: 'GET',
-			headers: {
-				'Accept': 'application/json',
-			},
-		}).then(response => that.data=response.json()).then(() => that.init());
+
+		that.init();
 		// that.data = ato_data;
 		// that.init();
 		/*$.ajax({
@@ -67,9 +63,24 @@ $(document).ready(function(){
 	$('.ato-table').each(function( ) {
 		let that = this;
 		console.log(this);
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET","/api/ato/1",false);
+		// xhr.responseType = 'json';
+		console.log("Initializing...");
+		xhr.send(null);
+		let atoData = null;
+		if(xhr.status === 200){
+
+			atoData=JSON.parse(xhr.response);
+
+			console.log(atoData.header.id)
+
+		};
 		const ato = new operation({
 			container: $(that),
-			ato_id: 'AD'
+			ato_id: 'AD',
+			data: atoData,
+
 		});
 	});
 });

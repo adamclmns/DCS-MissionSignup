@@ -9,11 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
-@SpringBootTest
+
 public class ATOParsingTest {
 
-    @Autowired
-    ObjectMapper om;
+    private final ObjectMapper om = new ObjectMapper();
 
     @Test
     public void testParsing_HappyPath() throws IOException {
