@@ -1,12 +1,9 @@
 package miz.signup.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
-import miz.signup.dto.BaseLocation;
-import miz.signup.dto.Callsign;
 import miz.signup.dto.EMissionType;
 
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
 @Builder

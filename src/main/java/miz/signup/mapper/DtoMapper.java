@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class DtoMapper {
-    public static Optional<ATO> map(Optional<AtoTable> airTaskingOrdersOptional) {
+    public static Optional<ATO> map(Optional<AtoEntity> airTaskingOrdersOptional) {
         if (airTaskingOrdersOptional.isPresent()) {
             return Optional.of(map(airTaskingOrdersOptional.get()));
         } else {
@@ -21,11 +21,11 @@ public class DtoMapper {
 
     }
 
-    public static Collection<ATO> map(Collection<AtoTable> airTaskingOrders) {
+    public static Collection<ATO> map(Collection<AtoEntity> airTaskingOrders) {
         return airTaskingOrders.stream().map(DtoMapper::map).collect(Collectors.toList());
     }
 
-    public static ATO map(AtoTable airTaskingOrder) {
+    public static ATO map(AtoEntity airTaskingOrder) {
         return ATO.builder().header(AtoHeader.builder()
                         .id(airTaskingOrder.getIdentifier())
                         .name(airTaskingOrder.getName())
@@ -82,14 +82,14 @@ public class DtoMapper {
                 .build();
     }
 
-    private static List<Signup> mapSignups(List<SignUpTable> entities) {
+    public static List<Signup> mapSignups(List<SignUpTable> entities) {
         if (entities != null && !entities.isEmpty()) {
             return entities.stream().map(DtoMapper::map).collect(Collectors.toList());
         }
         return null;
     }
 
-    private static Signup map(SignUpTable entity) {
+    public static Signup map(SignUpTable entity) {
         if (entity != null) {
             Signup.SignupBuilder builder = Signup.builder();
             if (entity.getId() != null) {
@@ -246,7 +246,7 @@ public class DtoMapper {
         else return null;
     }
 
-    public static AirMissionLocation map(AirMissionLocationTable location) {
+    public static AirMissionLocation map(AirMissionLocationEntity location) {
         if (location != null)
             return AirMissionLocation.builder()
                     ._id(location.getId())
@@ -257,5 +257,6 @@ public class DtoMapper {
                     .build();
         else return null;
     }
+
 
 }

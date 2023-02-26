@@ -2,17 +2,16 @@ package miz.signup.config;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import miz.signup.dto.ATO;
-import miz.signup.entities.AtoTable;
+import miz.signup.entities.AtoEntity;
 import miz.signup.mapper.EntityMapper;
 import miz.signup.repos.AtoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 @Slf4j
@@ -31,7 +30,7 @@ public class SampleDataBean {
         try {
             String initialJson = new String(getClass().getClassLoader().getResourceAsStream("test_ATO_1.json").readAllBytes());
             ATO atoObject = objectMapper.readValue(initialJson, ATO.class);
-            AtoTable atoEntity = EntityMapper.map(atoObject);
+            AtoEntity atoEntity = EntityMapper.map(atoObject);
 
             atoRepository.save(atoEntity);
 

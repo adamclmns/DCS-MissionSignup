@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
 public class SpringDocConfiguration {
     @Bean
     public GroupedOpenApi configApi(){
-        return GroupedOpenApi.builder().pathsToMatch("/api/**").group("Mission Signup API").build();
+        return GroupedOpenApi.builder().pathsToMatch("/**").group("Mission Signup API").build();
     }
 }

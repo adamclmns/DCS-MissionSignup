@@ -1,8 +1,10 @@
 package miz.signup.entities;
 
-import jakarta.persistence.*;
+
 import lombok.*;
 import org.springframework.boot.autoconfigure.graphql.ConditionalOnGraphQlSchema;
+
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -22,4 +24,5 @@ public class BriefingDocumentTable {
     private String directory;
     @Column(name="name")
     private String name;
+
 }

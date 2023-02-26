@@ -1,10 +1,12 @@
 package miz.signup.repos;
 
-import miz.signup.entities.AtoTable;
+import miz.signup.entities.AtoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-@Service
-public interface AtoRepository extends JpaRepository<AtoTable, Long> {
+import java.util.Optional;
 
+@Service
+public interface AtoRepository extends JpaRepository<AtoEntity, Long> {
+    Optional<AtoEntity> findAtoEntityByIdentifier(String identifier);
 }

@@ -1,6 +1,6 @@
 package miz.signup.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import miz.signup.dto.Callsign;
 import miz.signup.dto.Frequency;
@@ -12,7 +12,7 @@ import miz.signup.dto.Frequency;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Table(name="air_refule_info")
+@Table(name="air_refuel_info")
 public class AirRefuelInfoTable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -36,4 +36,14 @@ public class AirRefuelInfoTable {
     private String refule_system;
     @Column(name="tacan")
     private String tacan;
+    @OneToOne(mappedBy = "arinfo", optional = false)
+    private FlightLineTable flightLineTable;
+
+    public FlightLineTable getFlightLineTable() {
+        return flightLineTable;
+    }
+
+    public void setFlightLineTable(FlightLineTable flightLineTable) {
+        this.flightLineTable = flightLineTable;
+    }
 }

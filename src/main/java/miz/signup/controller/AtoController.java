@@ -1,28 +1,17 @@
 package miz.signup.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.PostConstruct;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import miz.signup.dto.ATO;
-import miz.signup.dto.BriefingDocument;
-import miz.signup.dto.EMissionType;
-import miz.signup.entities.*;
+import miz.signup.entities.AtoEntity;
 import miz.signup.mapper.DtoMapper;
 import miz.signup.mapper.EntityMapper;
 import miz.signup.repos.AtoRepository;
-import miz.signup.repos.BriefingDocumentRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @RequestMapping("api/ato")
 @RestController
@@ -42,20 +31,49 @@ public class AtoController {
 
     }
 
+    /**
+     * Create a *new* ATO from a JSON Payload POSTED to the /api/ato endp;oint.
+     * @param requestDto
+     * @return
+     */
     @PostMapping
-    public ATO post(@RequestBody ATO ato) {
-        return DtoMapper.map(atoRepository.save(EntityMapper.map(ato)));
+    @ResponseBody
+    public ATO post(@RequestBody ATO requestDto) {
+        // Check to see if this already exists.
+        Optional<AtoEntity> entity = atoRepository.findAtoEntityByIdentifier(requestDto.getHeader().getId());
+        return DtoMapper.map(atoRepository.save(EntityMapper.map(requestDto)));
     }
 
+    /**
+     * Returns a list of *all* ATO's currently in the database. This operation could become slow if data volume grows very large.
+     * @return
+     */
     @GetMapping
+    @ResponseBody
     public Collection<ATO> getAll() {
-        Collection<AtoTable> atoEntities = atoRepository.findAll();
+        Collection<AtoEntity> atoEntities = atoRepository.findAll();
         return DtoMapper.map(atoEntities);
     }
 
+    /**
+     * Get ATO by ID value.
+     * Verbose error handling will tell you more than you want about what's broken if it fails.
+     * @param id
+     * @return an ATO Json if successful, Exception if the value is not present.
+     */
     @GetMapping("{id}")
-    public ATO getById(@PathVariable("id") Long id) {
-        return DtoMapper.map(atoRepository.findById(id)).orElse(null);
+    public ResponseEntity getById(@PathVariable("id") Long id) {
+       try {
+           Optional<AtoEntity> entity = atoRepository.findById(id);
+           if (entity.isPresent()) {
+               return ResponseEntity.ok(DtoMapper.map(entity.get()));
+           } else {
+               return ResponseEntity.notFound().build();
+           }
+       }catch (Exception e){
+           log.error(String.format("Error Occurred while looking up ATO with ID %s",id),e);
+           return ResponseEntity.internalServerError().body(e);
+       }
     }
 
 

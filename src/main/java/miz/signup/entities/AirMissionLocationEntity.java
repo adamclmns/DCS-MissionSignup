@@ -1,11 +1,10 @@
 package miz.signup.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @Entity
@@ -15,7 +14,7 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class AirMissionLocationTable {
+public class AirMissionLocationEntity {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -33,12 +32,23 @@ public class AirMissionLocationTable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        AirMissionLocationTable that = (AirMissionLocationTable) o;
+        AirMissionLocationEntity that = (AirMissionLocationEntity) o;
         return id != null && Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @OneToOne(mappedBy = "amsnloc", optional = false)
+    private FlightLineTable flightLineTable;
+
+    public FlightLineTable getFlightLineTable() {
+        return flightLineTable;
+    }
+
+    public void setFlightLineTable(FlightLineTable flightLineTable) {
+        this.flightLineTable = flightLineTable;
     }
 }

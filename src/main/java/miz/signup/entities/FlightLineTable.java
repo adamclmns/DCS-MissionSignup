@@ -1,8 +1,7 @@
 package miz.signup.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
-import miz.signup.dto.*;
 
 import java.util.List;
 
@@ -22,16 +21,22 @@ public class FlightLineTable {
     @OneToOne(cascade = {CascadeType.ALL})
     private MissionDataTable msndat;
     @OneToOne(cascade = {CascadeType.ALL})
-    private AirMissionLocationTable amsnloc;
+    private AirMissionLocationEntity amsnloc;
     @OneToMany(cascade = {CascadeType.ALL})
     private List<GroundTargetLocationTable> gtgtloc;
     @OneToMany(cascade = {CascadeType.ALL})
     private List<PackageDataTable> pkgdat;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.ALL})
     private PackageCommandTable pkgcmd;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.ALL})
     private AirRefuelInfoTable arinfo;
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<SignUpTable> signups;
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true )
+    private List<SignUpTable> signups = new java.util.ArrayList<>();
+
+    @JoinColumn(name = "atoId")
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private AtoEntity ato;
+
 }
 

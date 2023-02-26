@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 @Slf4j
 public class EntityMapper {
-    public static AtoTable map(ATO ato) {
-        AtoTable.AtoTableBuilder builder = AtoTable.builder();
+    public static AtoEntity map(ATO ato) {
+        AtoEntity.AtoEntityBuilder builder = AtoEntity.builder();
         if (ato.get_id() != null) {
             builder.id(ato.get_id());
         }
@@ -33,7 +33,9 @@ public class EntityMapper {
                 .flightLines(
                         mapFlightLines(ato.getLines())
                 );
-        return builder.build();
+        AtoEntity entity = builder.build();
+
+        return entity;
     }
 
 
@@ -57,7 +59,7 @@ public class EntityMapper {
         return null;
     }
 
-    private static SignUpTable map(Signup dto) {
+    public static SignUpTable map(Signup dto) {
         if(dto != null ){
             SignUpTable.SignUpTableBuilder builder = SignUpTable.builder();
             if(dto.get_id() != null){
@@ -65,21 +67,25 @@ public class EntityMapper {
             }
             builder.type(dto.getType());
 
-            if(dto.getUsers().size() >= 1){
-                builder.user01(dto.getUsers().get(0));
-            }
-            if(dto.getUsers().size() >= 2){
-                builder.user02(dto.getUsers().get(1));
-            }
-            if(dto.getUsers().size() >= 3){
-                builder.user03(dto.getUsers().get(2));
-            }
-            if(dto.getUsers().size() == 4){
-                builder.user04(dto.getUsers().get(3));
-            }
+            mapSignUpUsers(dto, builder);
             return builder.build();
         }
         return null;
+    }
+
+    public static void mapSignUpUsers(Signup dto, SignUpTable.SignUpTableBuilder builder) {
+        if(dto.getUsers().size() >= 1){
+            builder.user01(dto.getUsers().get(0));
+        }
+        if(dto.getUsers().size() >= 2){
+            builder.user02(dto.getUsers().get(1));
+        }
+        if(dto.getUsers().size() >= 3){
+            builder.user03(dto.getUsers().get(2));
+        }
+        if(dto.getUsers().size() == 4){
+            builder.user04(dto.getUsers().get(3));
+        }
     }
 
     private static List<PackageDataTable> mapPackageData(List<PackageData> dtos) {
@@ -210,9 +216,9 @@ public class EntityMapper {
                 .build();
     }
 
-    public static AirMissionLocationTable map(AirMissionLocation location) {
+    public static AirMissionLocationEntity map(AirMissionLocation location) {
         if (location != null) {
-            return AirMissionLocationTable.builder()
+            return AirMissionLocationEntity.builder()
                     .location_name(location.getLocation_name())
                     .end_time(location.getEnd_time())
                     .start_time(location.getStart_time())
@@ -247,7 +253,7 @@ public class EntityMapper {
 
     public static List<BriefingDocumentTable> map(List<BriefingDocument> docs) {
         if (docs != null && !docs.isEmpty()) {
-            return docs.stream().map(EntityMapper::map).collect(Collectors.toList());
+            return docs.stream().map(v ->EntityMapper.map(v)).collect(Collectors.toList());
         }
         return null;
     }

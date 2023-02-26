@@ -1,7 +1,7 @@
 package miz.signup.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
