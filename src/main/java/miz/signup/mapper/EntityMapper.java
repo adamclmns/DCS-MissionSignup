@@ -23,7 +23,7 @@ public class EntityMapper {
                         map(ato.getHeader().getDocuments())
                 ).timezone(ato.getHeader().getTimezone())
                 .flightLines(
-                        EntityMapper.mapFlightLines(ato.getLines())
+                        mapFlightLines(ato.getLines())
                 );
         return builder.build();
     }
@@ -35,7 +35,34 @@ public class EntityMapper {
                 .msndat(map(line.getMsndat()))
                 .amsnloc(map(line.getAmsnloc()))
                 .arinfo(map(line.getArinfo()))
+                .gtgtloc(mapGroundTargetLocations(line.getGtgtloc()))
                 .build();
+    }
+
+    private static List<GroundTargetLocationTable> mapGroundTargetLocations(List<GroundTargetLocation> gtgtloc) {
+        if(gtgtloc != null && !gtgtloc.isEmpty()) {
+            return gtgtloc.stream().map(EntityMapper::map).collect(Collectors.toList());
+        }
+            return null;
+
+    }
+
+    private static GroundTargetLocationTable map(GroundTargetLocation groundTargetLocation) {
+        if(groundTargetLocation != null) {
+            GroundTargetLocationTable.GroundTargetLocationTableBuilder builder = GroundTargetLocationTable.builder();
+            if (groundTargetLocation.get_id() != null) {
+                builder.id(groundTargetLocation.get_id());
+            }
+            return builder.tot(groundTargetLocation.getTot())
+                    .nlt(groundTargetLocation.getNlt())
+                    .target_id(groundTargetLocation.getTarget_id())
+                    .net(groundTargetLocation.getNet())
+                    .priority(groundTargetLocation.getPriority())
+                    .description(groundTargetLocation.getDescription())
+                    .build();
+        }else{
+            return null;
+        }
     }
 
     public static List<FlightLineTable> mapFlightLines(List<FlightLine> lines) {
@@ -104,9 +131,20 @@ public class EntityMapper {
                 .prim_msn(missionData.getPrim_msn())
                 .num_ac(missionData.getNum_ac())
                 .mission_num(missionData.getMission_num())
+                .dep_location(map(missionData.getDep_location()))
+                .rec_location(map(missionData.getRec_location()))
+                .ac_type(missionData.getAc_type())
                 .sec_msn(missionData.getSec_msn())
+                .ac_cs(map(missionData.getAc_cs()))
                 .taskedUnit(missionData.getTasked_unit())
                 .build();
+    }
+    public static BaseLocationTable map(BaseLocation table){
+        BaseLocationTable.BaseLocationTableBuilder builder = BaseLocationTable.builder();
+        if(table.get_id() != null)
+            builder.id(table.get_id());
+        builder.icao(table.getIcao()).name(table.getName());
+        return builder.build();
     }
 
     public static List<BriefingDocumentTable> map(List<BriefingDocument> docs) {
@@ -148,4 +186,7 @@ public class EntityMapper {
         }
         return null;
     }
+
+
 }
+

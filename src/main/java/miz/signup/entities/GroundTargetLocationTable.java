@@ -26,5 +26,7 @@ public class GroundTargetLocationTable {
     LocalDateTime tot;
     String priority;
     String description;
+    @OneToOne(cascade = {CascadeType.ALL})
+    CoordinateTable dmpi;
 
 }

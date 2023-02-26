@@ -27,12 +27,15 @@ public class MissionDataTable {
     private Integer mission_num;
     @Column(name="num_aircraft")
     private Integer num_ac;
+    private String ac_type;
     @OneToOne(cascade = {CascadeType.ALL})
     private CallsignTable ac_cs;
     private EMissionType prim_msn;
     private  EMissionType sec_msn;
-//    private BaseLocation dep_location;
-//    private BaseLocation rec_location;
-//    private List<Integer> mode_3;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private BaseLocationTable dep_location;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private BaseLocationTable rec_location;
+    private String mode_3; // String.join() integers together.
 
 }
